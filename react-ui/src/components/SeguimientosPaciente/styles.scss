@@ -1,0 +1,24 @@
+.detalle-seguimiento {
+  background-color: $gray-200;
+
+  .titulo {
+    margin-bottom: 0;
+    font-size: 2rem;
+    font-weight: bold;
+  }
+
+  .link-receta{
+    height: fit-content;
+    margin-block: auto;
+  }
+}
+
+.card-header-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h5 {
+    margin-bottom: 0;
+  }
+}

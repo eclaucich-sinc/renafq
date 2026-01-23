@@ -1,0 +1,19 @@
+// Import custom variables
+@import "variables";
+
+// Import bootstrap styles
+@import '~bootstrap/scss/bootstrap';
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+
+// Import base styles
+@import "base";
+
+// Import per-component styles
+@import 'components/partials/Navbar.scss';
+@import 'components/ItemListaPacientes/ItemListaPacientes.scss';
+@import 'components/ListaPacientes/ListaPacientes.scss';
+@import 'components/DetallesPaciente/DetallesPaciente.scss';
+@import 'components/SeguimientosPaciente/styles.scss';
+@import 'components/Buscar/Buscar.scss';

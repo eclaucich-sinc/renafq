@@ -1,0 +1,46 @@
+[
+  {
+    "seccion1": {
+      "idpaciente": 452,
+      "idseguimiento": 1809,
+      "fechaseguimiento": "2015-07-02",
+      "edadseguimiento": "",
+      "institucionseguimiento": "",
+      "fallecimiento": "No",
+      "fechafallecimiento": "",
+      "causafallecimiento": "",
+      "niveleducativo": "",
+      "actividadlaboral": "",
+      "coberturasocial": "",
+      "tratamientoantibioticohospitalizado": "",
+      "pensiondiscapacidad": "",
+      "tratamientoantibioticohospitalizadodias": "",
+      "tratamientoantibioticodomiciliario": "",
+      "tratamientoantibioticodomiciliariodias": "",
+      "consultasambulatorias": "",
+      "embarazo": ""
+    }
+  },
+  {
+    "seccion1": {
+      "idpaciente": 1274,
+      "idseguimiento": 1812,
+      "fechaseguimiento": "2011-04-26",
+      "edadseguimiento": "",
+      "institucionseguimiento": "Hospital de Niños Ricardo Gutiérrez",
+      "fallecimiento": "No",
+      "fechafallecimiento": "",
+      "causafallecimiento": "",
+      "niveleducativo": "",
+      "actividadlaboral": "",
+      "coberturasocial": "No",
+      "tratamientoantibioticohospitalizado": "",
+      "pensiondiscapacidad": "",
+      "tratamientoantibioticohospitalizadodias": "",
+      "tratamientoantibioticodomiciliario": "",
+      "tratamientoantibioticodomiciliariodias": "",
+      "consultasambulatorias": "",
+      "embarazo": "No"
+    }
+  }
+]

@@ -1,0 +1,71 @@
+a {
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+.folder-container {
+    position: relative;
+    transition: all ease 0.4s;
+
+    .folder-image {
+        position: relative;
+        width: 120px;
+        margin: auto;
+
+        .name-image {
+            position: absolute;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: $black;
+            line-height: 45px;
+            margin-left: auto;
+            margin-right: auto;
+            left: 0;
+            right: 0;
+            text-align: center;
+            bottom: 25%;
+        }
+    }
+
+    .folder-title {
+        color: $black;
+        text-align: center;
+        line-height: 20px;
+        margin-top: -0.8rem;
+    }
+
+    &:hover {
+      .svg-icon {
+          transition: all ease 0.2s;
+          -webkit-filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7));
+          filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7));
+      }
+    }
+}
+
+.remove-icon {
+    display: none;
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    width: 2rem;
+    margin: 0 auto;
+}
+
+.edit-icon {
+    display: none;
+    position: absolute;
+    left: 1.5rem;
+    top: 1rem;
+    width: 2rem;
+    margin: 0 auto;
+}
+  
+.paciente-card:hover {
+    .remove-icon, .edit-icon {
+        display: block;
+        border: none;
+        background: transparent;
+    }
+}

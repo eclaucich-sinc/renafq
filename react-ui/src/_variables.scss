@@ -1,0 +1,64 @@
+/* 
+    Overwrite bootstrap variables
+*/
+
+// use normal gutter
+$grid-gutter-width: 20px;
+
+// overwrite default values with the needed ones
+$white:    #fff;
+$gray-100: #f8f9fa;
+$gray-200: #EEEEEE;
+$gray-300: #dee2e6;
+$gray-400: #ced4da;
+$gray-500: #999999;
+$gray-600: #666666;
+$gray-700: #495057;
+$gray-800: #434343;
+$gray-900: #333333;
+$black:    #000;
+
+
+$blue:    #3483FA;
+$indigo:  #6610f2;
+$purple:  #6f42c1;
+$pink:    #e83e8c;
+$red:     #dc3545;
+$orange:  #ff6f06;
+$yellow:  #FFE600;
+$green:   #28a745;
+$teal:    #20c997;
+$cyan:    #58c9e7;
+
+$primary:   $orange;
+$secondary: $cyan;
+$light:     $gray-200;
+$dark:      $gray-900;
+
+// modify message default colors
+$info:      $blue;
+$warning:   $yellow;
+$danger:    $red;
+
+$grid-breakpoints: (
+    // Extra small screen / phone
+    xs: 0,
+    // Small screen / phone
+    sm: 576px,
+    // Medium screen / tablet
+    md: 768px,
+    // Large screen / desktop
+    lg: 992px,
+    // Extra large screen / wide desktop
+    xl: 1200px
+);
+
+$container-max-widths: (
+    sm: 540px,
+    md: 720px,
+    lg: 960px,
+    xl: 1140px
+);
+
+// change default breadcumb divider
+$breadcrumb-divider: quote(">");

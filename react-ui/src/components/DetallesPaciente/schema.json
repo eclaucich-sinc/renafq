@@ -1,0 +1,589 @@
+{
+  "title": "Formulario de alta de un nuevo paciente",
+  "type": "object",
+  "properties": {
+    "seccion1": {
+      "title": "Datos del paciente",
+      "type": "object",
+      "properties": {
+        "historiaClinica": {
+          "type": "string",
+          "title": "Historia Clínica"
+        },
+        "nombre": {
+          "type": "string",
+          "title": "Nombre"
+        },
+        "apellido": {
+          "type": "string",
+          "title": "Apellido"
+        },
+        "dni": {
+          "type": "number",
+          "title": "D.N.I.",
+          "minLength": 8
+        },
+        "fechaNacimiento": {
+          "type": "string",
+          "title": "Fecha de nacimiento",
+          "format": "date"
+        },
+        "nombreResponsable": {
+          "type": "string",
+          "title": "Nombre del responsable"
+        },
+        "apellidoResponsable": {
+          "type": "string",
+          "title": "Apellido del responsable"
+        },
+        "edadResponsable": {
+          "type": "string",
+          "title": "Edad del responsable"
+        },
+        "dniResponsable": {
+          "type": "number",
+          "title": "D.N.I. Responsable",
+          "minLength": 8
+        },
+        "vinculoResponsable": {
+          "type": "string",
+          "title": "Vínculo",
+          "enum": [
+            "Padre",
+            "Madre",
+            "Tutor o encargado",
+            "Hermano/a",
+            "Otro familiar",
+            "Otro parentesco",
+            "Hijo/a",
+            "Abuelo/a",
+            "Tío/a",
+            "Primo/a",
+            "Nieto/a",
+            "Conyuge",
+            "Conviviente",
+            "Padre biológico",
+            "Madre biológica"
+          ]
+        },
+        "filiacionResponsable": {
+          "type": "string",
+          "title": "Filiación del responsable"
+        },
+        "sexo": {
+          "type": "string",
+          "title": "Sexo",
+          "enum": [
+            "Masculino",
+            "Femenino",
+            "Otro"
+          ]
+        },
+        "genero": {
+          "type": "string",
+          "title": "Género"
+        },
+        "nivelEducativo": {
+          "type": "string",
+          "title": "Nivel educativo",
+          "enum": [
+            "Primario",
+            "Secundario",
+            "Terciario",
+            "Universitario"
+          ]
+        },
+        "institucion": {
+          "type": "string",
+          "title": "Institución",
+          "enum": [
+            "Cedma",
+            "Cemic",
+            "Centro De Especialidades Pediátricas Estación Infancia",
+            "Centro Médico Del Sur",
+            "Centro Respiratorio Infantil",
+            "Clinica Del Sud",
+            "Clinica San Lucas",
+            "Clínica Y Maternidad Del Sol",
+            "Consultorio De Especialidades Medicas",
+            "Consultorio Fq - Dra. Alais",
+            "Consultorio Fq-  Dra. Bertelegni",
+            "Consultorio Fq- Dr. Lotero",
+            "Consultorio Fq - Dr. Macri",
+            "Consultorio Fq - Dr. Meneguetti",
+            "Hospital Alemán",
+            "Hospital Dalmacio Vélez Sarsfield",
+            "Hospital De Alta Complejidad",
+            "Hospital De Cipolletti",
+            "Hospital De Ninos De La Sma.Trinidad",
+            "Hospital De Niños De San Justo",
+            "Hospital De Niños Dr Orlando Alassia",
+            "Hospital De Niños Héctor Quintana",
+            "Hospital De Niños Pedro De Elizalde",
+            "Hospital De Niños Ricardo Gutiérrez",
+            "Hospital De Niños Sor Maria Ludovica",
+            "Hospital De Pediatría Juan P. Garrahan",
+            "Hospital Del Niño Jesús",
+            "Hospital Dr Alejandro Posadas",
+            "Hospital Dr. Antonio A. Cetrángolo",
+            "Hospital Eva Perón",
+            "Hospital Humaberto Notti",
+            "Hospital Infantil Municipal",
+            "Hospital Italiano",
+            "Hospital Iturraspe",
+            "Hospital Lucio Molas",
+            "Hospital Pediátrico Dr. Avelino Castelan",
+            "Hospital Pediátrico Juan Pablo Ii",
+            "Hospital Prof.Dr Rodolfo Rossi",
+            "Hospital Provincial De Pediatría“Dr. Barreyro”",
+            "Hospital Provincial De Rosario",
+            "Hospital Público Materno Infantil De Salta",
+            "Hospital Ramón Carrillo",
+            "Hospital Regional",
+            "Hospital Samic El Dorado",
+            "Hospital San Roque",
+            "Hospital Penna",
+            "Hospital San Luis",
+            "Hospital Victor J Vilela",
+            "Instituto Especialidades Pediátricas",
+            "Instituto Modelo De Cardiología",
+            "Maf",
+            "Pediatrica San Luis",
+            "Policlínico Neuquén",
+            "Otra"
+          ]
+        },
+        "pais": {
+          "title": "País",
+          "type": "string"
+        },
+        "provincia": {
+          "title": "Provincia",
+          "type": "string",
+          "enum": [
+            "CABA",
+            "Buenos Aires",
+            "Catamarca",
+            "Chaco",
+            "Chubut",
+            "Córdoba",
+            "Corrientes",
+            "Entre Ríos",
+            "Formosa",
+            "Jujuy",
+            "La Pampa",
+            "La Rioja",
+            "Mendoza",
+            "Misiones",
+            "Neuquén",
+            "Río Negro",
+            "Salta",
+            "San Juan",
+            "San Luis",
+            "Santa Cruz",
+            "Santa Fe",
+            "Santiago del Estero",
+            "Tierra del Fuego",
+            "Tucumán"
+          ]
+        },
+        "localidad": {
+          "title": "Localidad",
+          "type": "string"
+        },
+        "codigoPostal": {
+          "title": "Código postal",
+          "type": "string"
+        },
+        "domicilioCalle": {
+          "title": "Domicilio Calle",
+          "type": "string"
+        },
+        "domicilioNumero": {
+          "title": "Domicilio Nro.",
+          "type": "string"
+        },
+        "domicilioPiso": {
+          "title": "Piso",
+          "type": "string"
+        },
+        "domicilioDepartamento": {
+          "title": "Departamento",
+          "type": "string"
+        },
+        "celular": {
+          "title": "Celular",
+          "type": "string"
+        },
+        "email": {
+          "title": "Email",
+          "type": "string"
+        }
+      },
+      "dependencies": {
+        "institucion": {
+          "oneOf": [
+            {
+              "properties": {
+                "institucion": {
+                  "enum": [
+                    "Cedma",
+                    "Cemic",
+                    "Centro De Especialidades Pediátricas Estación Infancia",
+                    "Centro Médico Del Sur",
+                    "Centro Respiratorio Infantil",
+                    "Clinica Del Sud",
+                    "Clinica San Lucas",
+                    "Clínica Y Maternidad Del Sol",
+                    "Consultorio De Especialidades Medicas",
+                    "Consultorio Fq - Dra. Alais",
+                    "Consultorio Fq-  Dra. Bertelegni",
+                    "Consultorio Fq- Dr. Lotero",
+                    "Consultorio Fq - Dr. Macri",
+                    "Consultorio Fq - Dr. Meneguetti",
+                    "Hospital Alemán",
+                    "Hospital Dalmacio Vélez Sarsfield",
+                    "Hospital De Alta Complejidad",
+                    "Hospital De Cipolletti",
+                    "Hospital De Ninos De La Sma.Trinidad",
+                    "Hospital De Niños De San Justo",
+                    "Hospital De Niños Dr Orlando Alassia",
+                    "Hospital De Niños Héctor Quintana",
+                    "Hospital De Niños Pedro De Elizalde",
+                    "Hospital De Niños Ricardo Gutiérrez",
+                    "Hospital De Niños Sor Maria Ludovica",
+                    "Hospital De Pediatría Juan P. Garrahan",
+                    "Hospital Del Niño Jesús",
+                    "Hospital Dr Alejandro Posadas",
+                    "Hospital Dr. Antonio A. Cetrángolo",
+                    "Hospital Eva Perón",
+                    "Hospital Humaberto Notti",
+                    "Hospital Infantil Municipal",
+                    "Hospital Italiano",
+                    "Hospital Iturraspe",
+                    "Hospital Lucio Molas",
+                    "Hospital Pediátrico Dr. Avelino Castelan",
+                    "Hospital Pediátrico Juan Pablo Ii",
+                    "Hospital Prof.Dr Rodolfo Rossi",
+                    "Hospital Provincial De Pediatría“Dr. Barreyro”",
+                    "Hospital Provincial De Rosario",
+                    "Hospital Público Materno Infantil De Salta",
+                    "Hospital Ramón Carrillo",
+                    "Hospital Regional",
+                    "Hospital Samic El Dorado",
+                    "Hospital San Roque",
+                    "Hospital Penna",
+                    "Hospital San Luis",
+                    "Hospital Victor J Vilela",
+                    "Instituto Especialidades Pediátricas",
+                    "Instituto Modelo De Cardiología",
+                    "Maf",
+                    "Pediatrica San Luis",
+                    "Policlínico Neuquén"
+                  ]
+                }
+              }
+            },
+            {
+              "properties": {
+                "institucion": {
+                  "enum": [
+                    "Otra"
+                  ]
+                },
+                "otraInstitucion": {
+                  "type": "string",
+                  "title": "Otra institución"
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "seccion2": {
+      "title": "Ficha médica",
+      "type": "object",
+      "properties": {
+        "fechaDiagnostico": {
+          "type": "string",
+          "title": "Fecha de diagnóstico",
+          "format": "date"
+        },
+        "edadDiagnostico": {
+          "type": "string",
+          "title": "Edad al diagnóstico"
+        },
+        "pesquisaNeonatal": {
+          "type": "string",
+          "title": "Pesquisa neonatal",
+          "enum": [
+            "No realizada",
+            "Realizada"
+          ]
+        },
+        "sospechaDiagnostica": {
+          "type": "array",
+          "title": "Sospecha diagnóstica",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "enum": [
+              "Pesquisa neonatal",
+              "Antecedentes familiares",
+              "Síntomas respiratorios",
+              "Malnutrición / falla de crecimiento",
+              "Diarrea crónica/malabsorción",
+              "Ileo meconial",
+              "Azoospermia",
+              "Edemas",
+              "Alcalosis metabólica/deshidratación",
+              "Anemia/Hipoalbuminemia",
+              "Hepatopatía",
+              "Sudor salado"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "pruebaSudor": {
+          "type": "string",
+          "title": "Prueba del sudor"
+        },
+        "cloruro1": {
+          "type": "number",
+          "title": "Cloruro 1",
+          "minimum": "0",
+          "maximum": "160"
+        },
+        "cloruro2": {
+          "type": "number",
+          "title": "Cloruro 2",
+          "minimum": "0",
+          "maximum": "160"
+        },
+        "fechaCloruro": {
+          "type": "string",
+          "title": "Fecha del test",
+          "format": "date"
+        },
+        "estudioGeneticoMolecular": {
+          "type": "string",
+          "title": "Estudio genético molecular",
+          "enum": [
+            "Pendiente",
+            "Realizado"
+          ],
+          "default": "Pendiente"
+        },
+        "potencialNasal": {
+          "type": "string",
+          "title": "Potencial nasal",
+          "enum": [
+            "No realizado",
+            "Realizado"
+          ],
+          "default": "No realizado"
+        },
+        "funcionalismoPancreatico": {
+          "type": "string",
+          "title": "Funcionalismo pancreático",
+          "enum": [
+            "Suficiente",
+            "Insuficiente"
+          ]
+        }
+      },
+      "dependencies": {
+        "pesquisaNeonatal": {
+          "oneOf": [
+            {
+              "properties": {
+                "pesquisaNeonatal": {
+                  "enum": [
+                    "No realizada"
+                  ]
+                }
+              }
+            },
+            {
+              "properties": {
+                "pesquisaNeonatal": {
+                  "enum": [
+                    "Realizada"
+                  ]
+                },
+                "estrategia": {
+                  "type": "string",
+                  "enum": [
+                    "TIR/TIR",
+                    "TIR/PAP"
+                  ]
+                }
+              },
+              "required": [
+                "estrategia"
+              ]
+            }
+          ]
+        },
+        "estudioGeneticoMolecular": {
+          "oneOf": [
+            {
+              "properties": {
+                "estudioGeneticoMolecular": {
+                  "enum": [
+                    "No realizado"
+                  ]
+                }
+              }
+            },
+            {
+              "properties": {
+                "estudioGeneticoMolecular": {
+                  "enum": [
+                    "Realizado"
+                  ]
+                },
+                "alelo1": {
+                  "type": "string",
+                  "enum": [
+                    "1353insT",
+                    "1460delAT",
+                    "1717-1G>A",
+                    "1782delA",
+                    "1811+1.6KbA>G",
+                    "1812-1G>A",
+                    "1898+3A>G",
+                    "2183AA>G",
+                    "2184delA",
+                    "2566insT",
+                    "2594delGT",
+                    "2686insT",
+                    "2789+2insA",
+                    "2789+5G>A",
+                    "3120+1G>A",
+                    "3659delC",
+                    "3272-26A>G",
+                    "3849+10KbC>T",
+                    "4016insT",
+                    "5T",
+                    "621+1G>T",
+                    "711+1G>T",
+                    "CFTRdele2,3",
+                    "D1152H",
+                    "D426C",
+                    "DF508",
+                    "G542X",
+                    "G551D",
+                    "G85E",
+                    "I507",
+                    "L6V",
+                    "N1303K",
+                    "Q220X",
+                    "R1066C",
+                    "R117H",
+                    "R1162X",
+                    "R334W",
+                    "R553X",
+                    "R75Q",
+                    "S549R",
+                    "W1089X",
+                    "W1282X",
+                    "W57X",
+                    "Y362X",
+                    "Otra",
+                    "No identificada"
+                  ]
+                },
+                "alelo2": {
+                  "type": "string",
+                  "enum": [
+                    "1353insT",
+                    "1460delAT",
+                    "1717-1G>A",
+                    "1782delA",
+                    "1811+1.6KbA>G",
+                    "1812-1G>A",
+                    "1898+3A>G",
+                    "2183AA>G",
+                    "2184delA",
+                    "2566insT",
+                    "2594delGT",
+                    "2686insT",
+                    "2789+2insA",
+                    "2789+5G>A",
+                    "3120+1G>A",
+                    "3659delC",
+                    "3272-26A>G",
+                    "3849+10KbC>T",
+                    "4016insT",
+                    "5T",
+                    "621+1G>T",
+                    "711+1G>T",
+                    "CFTRdele2,3",
+                    "D1152H",
+                    "D426C",
+                    "DF508",
+                    "G542X",
+                    "G551D",
+                    "G85E",
+                    "I507",
+                    "L6V",
+                    "N1303K",
+                    "Q220X",
+                    "R1066C",
+                    "R117H",
+                    "R1162X",
+                    "R334W",
+                    "R553X",
+                    "R75Q",
+                    "S549R",
+                    "W1089X",
+                    "W1282X",
+                    "W57X",
+                    "Y362X",
+                    "Otra",
+                    "No identificada"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "potencialNasal": {
+          "oneOf": [
+            {
+              "properties": {
+                "potencialNasal": {
+                  "enum": [
+                    "No realizado"
+                  ]
+                }
+              }
+            },
+            {
+              "properties": {
+                "potencialNasal": {
+                  "enum": [
+                    "Realizado"
+                  ]
+                },
+                "potencialNasalRealizado": {
+                  "type": "string",
+                  "title": "Potencial nasal realizado",
+                  "enum": [
+                    "Normal",
+                    "Anormal"
+                  ]
+                }
+              },
+              "required": [
+                "potencialNasalRealizado"
+              ]
+            }
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,209 @@
+import React, { useState, useEffect } from 'react';
+import Loader from 'react-loader-spinner';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { useDispatch, useSelector } from 'react-redux';
+import { obtenerPaciente } from '../../redux/_actions/pacienteAction';
+
+
+function DetallesPaciente(props) {
+
+    const id = props.match.params.id ? props.match.params.id : -1;
+
+    const state = useSelector(state => state.paciente);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (state.paciente.length === 0 && id !== -1) {
+            dispatch(obtenerPaciente(id));
+        }
+    }, [state.paciente]);
+
+    // state = {
+    //     details: [],
+    //     categories: [],
+    //     loading: false,
+    //     // loading: true,
+    // };
+
+    // componentDidMount() {
+    //     this.obtainItem();
+    // }
+
+    // obtainItem = async () => {
+    //     // create a request to the local endpoint
+    //     await fetch(this.props.match.url)
+    //         .then(res => res.json())
+    //         .then(results => this.setState({
+    //             details: results.item,
+    //             categories: this.state.categories.concat(results.item.title),
+    //             loading: false
+    //         }))
+    //         .catch(error => console.log(error));
+    // };
+
+    // modify price to adjust it to the requested format (thousands separator)
+    // priceFormat = (amount) => {
+    //     return Math.trunc(amount).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    // }
+
+    // // modify decimals to adjust it to the requested format (2 digits)
+    // decimalsFormat = (decimals) => {
+    //     return ("0" + decimals).slice(-2)
+    // }
+
+    // create string with the combination of the condition and quantity sold of a item
+    // conditionFormat = (condition, sold_quantity) => {
+    //     let cond = (condition === 'new') ? 'Nuevo' : ( (condition === 'used') ? 'Usado' : condition );
+    //     let qty = (sold_quantity > 0) ? ` - ${sold_quantity} ${( (sold_quantity !== 1) ? 'vendidos' : 'vendido' )}` : '';
+    //     return `${cond} ${qty}`;
+    // }
+
+    return (
+
+        <div className="container">
+        {
+            (!state.loading && state.paciente.length !== 0)
+            ?
+            <React.Fragment>
+                <div className="row pt-3">
+                    <div className="col-12">
+                        <div className="card shadow-sm border border-dark">
+                            <div className="card-body">
+                                <div className="border-bottom border-gray pb-2 mb-3 title">
+                                    <FontAwesomeIcon icon={faUser} className="mr-2" />Datos del paciente
+                                </div>
+                                <div className="row">
+                                    <div className="col-6">
+                                        <label htmlFor="nombre">Nombre</label>
+                                        <input type="text" className="form-control-plaintext" id="nombre" placeholder="" value={state.paciente.nombre} disabled />
+                                    </div>
+                                    <div className="col-6">
+                                        <label htmlFor="apellido">Apellido</label>
+                                        <input type="text" className="form-control-plaintext" id="apellido" placeholder="" value={state.paciente.apellido} disabled />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="card mt-3 border border-dark">
+                            <div className="card-header">
+                                Paciente
+                            </div>
+                            <div className="card-body">
+                                <h5 className="card-title">Special title treatment</h5>
+                                <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </React.Fragment>
+            :
+            <Loader
+                className="text-center"
+                type="ThreeDots"
+                color="#999999"
+                height={100}
+                width={100} />
+        }
+        </div>
+    );
+}
+
+export default DetallesPaciente;
+
+
+// class DetallesPaciente extends Component {
+
+//     state = {
+//         details: [],
+//         categories: [],
+//         loading: false,
+//         // loading: true,
+//     };
+
+//     componentDidMount() {
+//         this.obtainItem();
+//     }
+
+//     obtainItem = async () => {
+//         // create a request to the local endpoint
+//         await fetch(this.props.match.url)
+//             .then(res => res.json())
+//             .then(results => this.setState({
+//                 details: results.item,
+//                 categories: this.state.categories.concat(results.item.title),
+//                 loading: false
+//             }))
+//             .catch(error => console.log(error));
+//     };
+
+//     // modify price to adjust it to the requested format (thousands separator)
+//     // priceFormat = (amount) => {
+//     //     return Math.trunc(amount).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+//     // }
+
+//     // // modify decimals to adjust it to the requested format (2 digits)
+//     // decimalsFormat = (decimals) => {
+//     //     return ("0" + decimals).slice(-2)
+//     // }
+
+//     // create string with the combination of the condition and quantity sold of a item
+//     // conditionFormat = (condition, sold_quantity) => {
+//     //     let cond = (condition === 'new') ? 'Nuevo' : ( (condition === 'used') ? 'Usado' : condition );
+//     //     let qty = (sold_quantity > 0) ? ` - ${sold_quantity} ${( (sold_quantity !== 1) ? 'vendidos' : 'vendido' )}` : '';
+//     //     return `${cond} ${qty}`;
+//     // }
+
+//     render() {
+
+//         return (
+
+//             <div className="container">
+//             {
+//                 (this.state.loading)
+//                 ? <Loader
+//                     className="text-center"
+//                     type="ThreeDots"
+//                     color="#999999"
+//                     height={100}
+//                     width={100} />
+//                 :
+//                 <React.Fragment>
+//                     <div className="row pt-3">
+//                         <div className="col-12">
+//                             <div className="card shadow-sm border border-dark">
+//                                 <div className="card-body">
+//                                     <div className="border-bottom border-gray pb-2 mb-3">
+//                                         <FontAwesomeIcon icon={faUser} className="mr-2" />Datos del paciente
+//                                     </div>
+//                                     <div className="row">
+//                                         <div className="col-6">
+//                                             <label htmlFor="nombre">Nombre</label>
+//                                             <input type="text" className="form-control-plaintext" id="nombre" placeholder="" value="Nombre de la persona" disabled />
+//                                         </div>
+//                                         <div className="col-6">
+//                                             <label htmlFor="apellido">Apellido</label>
+//                                             <input type="text" className="form-control-plaintext" id="apellido" placeholder="" value="Apellido de la persona" disabled />
+//                                         </div>
+//                                     </div>
+//                                 </div>
+//                             </div>
+//                             <div className="card mt-3 border border-dark">
+//                                 <div className="card-header">
+//                                     Paciente
+//                                 </div>
+//                                 <div className="card-body">
+//                                     <h5 className="card-title">Special title treatment</h5>
+//                                     <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
+//                                 </div>
+//                             </div>
+//                         </div>
+//                     </div>
+//                 </React.Fragment>
+//             }
+//             </div>
+//         );
+//     }
+// }
+
+// export default DetallesPaciente;

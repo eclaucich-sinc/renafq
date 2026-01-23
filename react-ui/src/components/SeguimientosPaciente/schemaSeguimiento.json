@@ -1,0 +1,1366 @@
+{
+  "title": "Datos de seguimiento anual",
+  "type": "object",
+  "properties": {
+    "seccion1": {
+      "type": "object",
+      "title": "Datos básicos del paciente",
+      "ui:order":["*"],
+      "properties": {
+        "fechaSeguimiento": {
+          "type": "string",
+          "format": "date",
+          "title": "Fecha de seguimiento"
+        },
+        "edadSeguimiento": {
+          "type": "number",
+          "title": "Edad al seguimiento"
+        },
+        "institucion": {
+          "type": "string",
+          "title": "Institución",
+          "enum": [
+            "Cedma",
+            "Cemic",
+            "Centro De Especialidades Pediátricas Estación Infancia",
+            "Centro Médico Del Sur",
+            "Centro Respiratorio Infantil",
+            "Clinica Del Sud",
+            "Clinica San Lucas",
+            "Clínica Y Maternidad Del Sol",
+            "Consultorio De Especialidades Medicas",
+            "Consultorio Fq - Dra. Alais",
+            "Consultorio Fq-  Dra. Bertelegni",
+            "Consultorio Fq- Dr. Lotero",
+            "Consultorio Fq - Dr. Macri",
+            "Consultorio Fq - Dr. Meneguetti",
+            "Hospital Alemán",
+            "Hospital Dalmacio Vélez Sarsfield",
+            "Hospital De Alta Complejidad",
+            "Hospital De Cipolletti",
+            "Hospital De Ninos De La Sma.Trinidad",
+            "Hospital De Niños De San Justo",
+            "Hospital De Niños Dr Orlando Alassia",
+            "Hospital De Niños Héctor Quintana",
+            "Hospital De Niños Pedro De Elizalde",
+            "Hospital De Niños Ricardo Gutiérrez",
+            "Hospital De Niños Sor Maria Ludovica",
+            "Hospital De Pediatría Juan P. Garrahan",
+            "Hospital Del Niño Jesús",
+            "Hospital Dr Alejandro Posadas",
+            "Hospital Dr. Antonio A. Cetrángolo",
+            "Hospital Eva Perón",
+            "Hospital Humaberto Notti",
+            "Hospital Infantil Municipal",
+            "Hospital Italiano",
+            "Hospital Iturraspe",
+            "Hospital Lucio Molas",
+            "Hospital Pediátrico Dr. Avelino Castelan",
+            "Hospital Pediátrico Juan Pablo Ii",
+            "Hospital Prof.Dr Rodolfo Rossi",
+            "Hospital Provincial De Pediatría“Dr. Barreyro”",
+            "Hospital Provincial De Rosario",
+            "Hospital Público Materno Infantil De Salta",
+            "Hospital Ramón Carrillo",
+            "Hospital Regional",
+            "Hospital Samic El Dorado",
+            "Hospital San Roque",
+            "Hospital Penna",
+            "Hospital San Luis",
+            "Hospital Victor J Vilela",
+            "Instituto Especialidades Pediátricas",
+            "Instituto Modelo De Cardiología",
+            "Maf",
+            "Pediatrica San Luis",
+            "Policlínico Neuquén",
+            "Otra"
+          ]
+        },
+        "fallecimiento": {
+          "type": "string",
+          "enum": [
+            "Sí",
+            "No"
+          ],
+          "title": "Fallecido"
+        },
+        "nivelEducativo": {
+          "type": "string",
+          "title": "Nivel educativo del paciente",
+          "enum": [
+            "Primario",
+            "Secundario",
+            "Terciario",
+            "Universitario"
+          ]
+        },
+        "actividadLaboral": {
+          "type": "string",
+          "title": "Actividad laboral",
+          "enum": [
+            "Trabaja",
+            "No trabaja",
+            "No corresponde por edad"
+          ]
+        },
+        "cud": {
+          "type": "string",
+          "enum": [
+            "Sí",
+            "No"
+          ],
+          "title": "CUD"
+        },
+        "coberturaSocial": {
+          "type": "string",
+          "enum": [
+            "Sí",
+            "No"
+          ],
+          "title": "Cobertura social"
+        },
+        "tratamientoAntibioticoHospitalizado": {
+          "type": "number",
+          "title": "N° tratamiento antibiótico intravenoso HOSPITALIZADO en el año"
+        },
+        "tratamientoAntibioticoHospitalizadoDias": {
+          "type": "number",
+          "title": "N° de DÍAS totales en el año con tratamiento antibiótico intravenoso HOSPITALIZADO"
+        },
+        "tratamientoAntibioticoDomiciliario": {
+          "type": "number",
+          "title": "N° tratamiento antibiótico intravenoso DOMICILIARIO en el año"
+        },
+        "tratamientoAntibioticoDomiciliarioDias": {
+          "type": "number",
+          "title": "N° de DÍAS totales en el año con tratamiento antibiótico intravenoso DOMICILIARIO"
+        },
+        "consultasAmbulatorias": {
+          "type": "number",
+          "title": "N° consultas ambulatorias /año:"
+        },
+          "embarazo": {
+          "type": "string",
+          "enum": [
+            "Sí",
+            "No"
+          ],
+          "title": "Embarazo"
+        }
+      },
+      "required": [
+        "fechaSeguimiento",
+        "institucion",
+        "fallecimiento",
+        "cud"
+      ],
+      "dependencies": {
+        "fallecimiento": {
+          "oneOf": [
+            {
+              "properties": {
+                "fallecimiento": {
+                  "enum": [
+                    "No"
+                  ]
+                }
+              }
+            },
+            {
+              "properties": {
+                "fallecimiento": {
+                  "enum": [
+                    "Sí"
+                  ]
+                },
+                "fechafallecimiento": {
+                  "type": "string",
+                  "format": "date",
+                  "title": "Fecha de fallecimiento"
+                },
+                "causaFallecimiento": {
+                  "type": "string",
+                  "enum": [
+                    "Respiratoria",
+                    "Cardiaca",
+                    "Gastrointestinal/hepática",
+                    "Relacionadas al trasplante",
+                    "Otras"
+                  ]
+                }
+              },
+              "required": [
+                "fechafallecimiento",
+                "causaFallecimiento"
+              ]
+            }
+          ]
+        },
+        "cud": {
+          "oneOf": [
+            {
+              "properties": {
+                "cud": {
+                  "enum": [
+                    "No"
+                  ]
+                }
+              }
+            },
+            {
+              "properties": {
+                "cud": {
+                  "enum": [
+                    "Sí"
+                  ]
+                },
+                "pensionDiscapacidad": {
+                  "type": "string",
+                  "enum": [
+                    "Sí",
+                    "No"
+                  ],
+                  "title": "Pensión por discapacidad"
+                }
+              },
+              "required": [
+                "pensionDiscapacidad"
+              ]
+            }
+          ]
+        },
+        "institucion": {
+          "oneOf": [
+            {
+              "properties": {
+                "institucion": {
+                  "enum": [
+                    "Cedma",
+                    "Cemic",
+                    "Centro De Especialidades Pediátricas Estación Infancia",
+                    "Centro Médico Del Sur",
+                    "Centro Respiratorio Infantil",
+                    "Clinica Del Sud",
+                    "Clinica San Lucas",
+                    "Clínica Y Maternidad Del Sol",
+                    "Consultorio De Especialidades Medicas",
+                    "Consultorio Fq - Dra. Alais",
+                    "Consultorio Fq-  Dra. Bertelegni",
+                    "Consultorio Fq- Dr. Lotero",
+                    "Consultorio Fq - Dr. Macri",
+                    "Consultorio Fq - Dr. Meneguetti",
+                    "Hospital Alemán",
+                    "Hospital Dalmacio Vélez Sarsfield",
+                    "Hospital De Alta Complejidad",
+                    "Hospital De Cipolletti",
+                    "Hospital De Ninos De La Sma.Trinidad",
+                    "Hospital De Niños De San Justo",
+                    "Hospital De Niños Dr Orlando Alassia",
+                    "Hospital De Niños Héctor Quintana",
+                    "Hospital De Niños Pedro De Elizalde",
+                    "Hospital De Niños Ricardo Gutiérrez",
+                    "Hospital De Niños Sor Maria Ludovica",
+                    "Hospital De Pediatría Juan P. Garrahan",
+                    "Hospital Del Niño Jesús",
+                    "Hospital Dr Alejandro Posadas",
+                    "Hospital Dr. Antonio A. Cetrángolo",
+                    "Hospital Eva Perón",
+                    "Hospital Humaberto Notti",
+                    "Hospital Infantil Municipal",
+                    "Hospital Italiano",
+                    "Hospital Iturraspe",
+                    "Hospital Lucio Molas",
+                    "Hospital Pediátrico Dr. Avelino Castelan",
+                    "Hospital Pediátrico Juan Pablo Ii",
+                    "Hospital Prof.Dr Rodolfo Rossi",
+                    "Hospital Provincial De Pediatría“Dr. Barreyro”",
+                    "Hospital Provincial De Rosario",
+                    "Hospital Público Materno Infantil De Salta",
+                    "Hospital Ramón Carrillo",
+                    "Hospital Regional",
+                    "Hospital Samic El Dorado",
+                    "Hospital San Roque",
+                    "Hospital Penna",
+                    "Hospital San Luis",
+                    "Hospital Victor J Vilela",
+                    "Instituto Especialidades Pediátricas",
+                    "Instituto Modelo De Cardiología",
+                    "Maf",
+                    "Pediatrica San Luis",
+                    "Policlínico Neuquén"
+                  ]
+                }
+              }
+            },
+            {
+              "properties": {
+                "institucion": {
+                  "enum": [
+                    "Otra"
+                  ]
+                },
+                "otraInstitucion": {
+                  "type": "string",
+                  "title": "Otra institución"
+                }
+              },
+              "required": [
+                "otraInstitucion"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "seccion2": {
+      "type": "object",
+      "title": "Antropometría",
+      "properties": {
+        "peso": {
+          "type": "number",
+          "title": "Peso[Kg]"
+        },
+        "talla": {
+          "type": "number",
+          "title": "Talla[cm]"
+        },
+        "imc": {
+          "type": "number",
+          "title": "Índice de Masa Corporal absoluto"
+        },
+        "percentiloPeso": {
+          "type": "number",
+          "title": "Percentilo Peso"
+        },
+        "zPeso": {
+          "type": "number",
+          "title": "z Peso"
+        },
+        "percentiloTalla": {
+          "type": "number",
+          "title": "Percentilo talla"
+        },
+        "zTalla": {
+          "type": "number",
+          "title": "z Talla"
+        },
+        "percentiloImc": {
+          "type": "number",
+          "title": "Percentilo IMC"
+        },
+        "zImc": {
+          "type": "number",
+          "title": "z IMC"
+        }
+      }
+    },
+    "seccion3": {
+      "type": "object",
+      "title": "Espirometrías",
+      "properties": {
+        "espirometrias": {
+          "type": "number",
+          "title": "Espirometrías por año"
+        },
+        "cvf": {
+          "type": "number",
+          "title": "CVF (% teórico)"
+        },
+        "vef": {
+          "type": "number",
+          "title": "VEF (% teórico)"
+        },
+        "vef_cvf": {
+          "type": "number",
+          "title": "VEF/CVF (absoluto)"
+        },
+        "cvfLitros": {
+          "type": "number",
+          "title": "CVF (litros) "
+        },
+        "vefLitros": {
+          "type": "number",
+          "title": "VEF (litros)"
+        }
+      }
+    },
+    "seccion4": {
+      "type": "object",
+      "title": "Microbiología",
+      "properties": {
+        "cultivos": {
+          "type": "number",
+          "title": "N° de cultivos/año"
+        },
+        "germenes": {
+          "type": "string",
+          "title": "Gérmenes",
+          "enum": [
+            "Staphylococcus aureus meticilino sensible",
+            "Staphylococcus aureus meticilino resistente",
+            "Pseudomonas aeruginosa",
+            "Pseudomonas aeruginosa mucosa",
+            "Pseudomonas aeruginosa multirresistente",
+            "Haemophilus influenzae",
+            "Stenotrophomonas maltophilia",
+            "Achromobacter xyloxoxidans ",
+            "Burkholderia cenocepacia",
+            "Burkholderia contaminans",
+            "Otras BC",
+            "Micobacterium  abscessus",
+            "Micobacterium avium",
+            "Micobacterium tuberculosis",
+            "Aspergillus fumigatus",
+            "Aspergillus terreus",
+            "Scedosporium",
+            "Flora habitual"
+          ]
+        }
+      }
+    },
+    "seccion5": {
+      "type": "object",
+      "title": "Estudios complementarios",
+      "properties": {
+        "toleranciaGlucosa": {
+          "type": "string",
+          "title": "Curva de tolerancia a la glucosa",
+          "enum": [
+            "No realizada",
+            "Realizada"
+          ]
+        },
+        "vitaminaD": {
+          "type": "string",
+          "title": "Vitamina D",
+          "enum": [
+            "No realizada",
+            "Realizada"
+          ]
+        },
+        "densitometria": {
+          "type": "string",
+          "title": "Densitometría",
+          "enum": [
+            "No realizada",
+            "Realizada"
+          ]
+        },
+        "inmunoglobulina": {
+          "type": "string",
+          "title": "Inmunoglobulina E total",
+          "enum": [
+            "No realizada",
+            "Realizada"
+          ]
+        },
+        "tacTorax": {
+          "type": "string",
+          "title": "TAC de tórax",
+          "enum": [
+            "No realizada",
+            "Realizada"
+          ]
+        },
+        "complicaciones": {
+          "type": "array",
+          "title": "Complicaciones o asociaciones",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Hemoptisis",
+              "Hemoptisis Masiva (más de 200 mL)",
+              "Atelectasia lobar",
+              "Neumotórax",
+              "Hipoxemia crónica ",
+              "Hipertensión Pulmonar",
+              "Aspergilosis ABPA Bronquitis Invasiva",
+              "Pólipos que requirieron cirugía",
+              "SOID",
+              "Constipación",
+              "Prolapso rectal",
+              "Pancreatitis",
+              "Diabetes",
+              "Hepatopatía",
+              "HTPortal",
+              "Litiasis Biliar",
+              "Osteoporosis",
+              "Fracturas",
+              "Depresión",
+              "Ototoxicidad",
+              "Nefrotoxicidad",
+              "Rinosinusitis crónica",
+              "Traqueostomía"
+            ]
+          },
+          "uniqueItems": true
+        }
+      },
+      "dependencies": {
+        "toleranciaGlucosa": {
+          "oneOf": [
+            {
+              "properties": {
+                "toleranciaGlucosa": {
+                  "enum": [
+                    "No realizada"
+                  ]
+                }
+              }
+            },
+            {
+              "properties": {
+                "toleranciaGlucosa": {
+                  "enum": [
+                    "Realizada"
+                  ]
+                },
+                "toleranciaGlucosaRealizada": {
+                  "type": "string",
+                  "title": "Curva de tolerancia a la glucosa realizada",
+                  "enum": [
+                    "Normal",
+                    "Intolerancia",
+                    "Diabetes"
+                  ]
+                }
+              },
+              "required": [
+                "toleranciaGlucosaRealizada"
+              ]
+            }
+          ]
+        },
+        "vitaminaD": {
+          "oneOf": [
+            {
+              "properties": {
+                "vitaminaD": {
+                  "enum": [
+                    "No realizada"
+                  ]
+                }
+              }
+            },
+            {
+              "properties": {
+                "vitaminaD": {
+                  "enum": [
+                    "Realizada"
+                  ]
+                },
+                "vitaminaDRealizada": {
+                  "type": "string",
+                  "title": "Vitamina D realizada",
+                  "enum": [
+                    "Normal",
+                    "Insuficiente"
+                  ]
+                }
+              },
+              "required": [
+                "vitaminaDRealizada"
+              ]
+            }
+          ]
+        },
+        "densitometria": {
+          "oneOf": [
+            {
+              "properties": {
+                "densitometria": {
+                  "enum": [
+                    "No realizada"
+                  ]
+                }
+              }
+            },
+            {
+              "properties": {
+                "densitometria": {
+                  "enum": [
+                    "Realizada"
+                  ]
+                },
+                "densitometriaRealizada": {
+                  "type": "string",
+                  "title": "Densitometría realizada",
+                  "enum": [
+                    "Normal",
+                    "Patológica"
+                  ]
+                }
+              },
+              "required": [
+                "densitometriaRealizada"
+              ]
+            }
+          ]
+        },
+        "inmunoglobulina": {
+          "oneOf": [
+            {
+              "properties": {
+                "inmunoglobulina": {
+                  "enum": [
+                    "No realizada"
+                  ]
+                }
+              }
+            },
+            {
+              "properties": {
+                "inmunoglobulina": {
+                  "enum": [
+                    "Realizada"
+                  ]
+                },
+                "inmunoglobulinaRealizada": {
+                  "type": "string",
+                  "title": "Inmunoglobulina E total realizada",
+                  "enum": [
+                    "< 500 U",
+                    "> 500 U "
+                  ]
+                }
+              },
+              "required": [
+                "inmunoglobulinaRealizada"
+              ]
+            }
+          ]
+        },
+        "tacTorax": {
+          "oneOf": [
+            {
+              "properties": {
+                "tacTorax": {
+                  "enum": [
+                    "No realizada"
+                  ]
+                }
+              }
+            },
+            {
+              "properties": {
+                "tacTorax": {
+                  "enum": [
+                    "Realizada"
+                  ]
+                },
+                "tacToraxRealizada": {
+                  "type": "string",
+                  "title": "TAC de tórax realizada",
+                  "enum": [
+                    "Bronquiectasia",
+                    "Atrapamiento aéreo",
+                    "Atrapamiento aéreo y bronquiectasias",
+                    "Patológica"
+                  ]
+                },
+                "scoreBhalla": {
+                  "type": "number",
+                  "title": "Score de Bhalla"
+                }
+              },
+              "required": [
+                "tacToraxRealizada"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "seccion6": {
+      "type": "object",
+      "title": "Tratamientos",
+      "properties": {
+        "alimentacion": {
+          "type": "array",
+          "title": "Alimentación",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Oral",
+              "Enteral por gastrostomía",
+              "Enteral por SNG"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "enzimasPancreaticas": {
+          "type": "string",
+          "enum": [
+            "Sí",
+            "No"
+          ],
+          "title": "Enzimas pancreáticas"
+        },
+        "vitaminas": {
+          "type": "string",
+          "enum": [
+            "Sí",
+            "No"
+          ],
+          "title": "Vitaminas"
+        },
+        "suplementacionVitaminaD": {
+          "type": "string",
+          "enum": [
+            "Sí",
+            "No"
+          ],
+          "title": "Suplementación de Vitamina D"
+        },
+        "suplementoNutricional": {
+          "type": "string",
+          "enum": [
+            "Sí",
+            "No"
+          ],
+          "title": "Suplemento nutricional"
+        },
+        "acidoUrsodesoxicolico": {
+          "type": "string",
+          "enum": [
+            "Sí",
+            "No"
+          ],
+          "title": "Ácido Ursodesoxicólico"
+        },
+        "antiacidos": {
+          "type": "string",
+          "enum": [
+            "Sí",
+            "No"
+          ],
+          "title": "Antiácidos"
+        },
+        "insulina": {
+          "type": "string",
+          "enum": [
+            "Sí",
+            "No"
+          ],
+          "title": "Insulina"
+        },
+        "broncodilatadores": {
+          "type": "string",
+          "enum": [
+            "Sí",
+            "No"
+          ],
+          "title": "Broncodilatadores"
+        },
+        "dnasa": {
+          "type": "string",
+          "enum": [
+            "Sí",
+            "No"
+          ],
+          "title": "DNasa"
+        },
+        "solucionSalinaHipertonica": {
+          "type": "string",
+          "enum": [
+            "Sí",
+            "No"
+          ],
+          "title": "Solución Salina Hipertónica"
+        },
+        "antibioticosInhalados": {
+          "type": "string",
+          "enum": [
+            "Sí",
+            "No"
+          ],
+          "title": "Antibióticos inhalados"
+        },
+        "corticoides": {
+          "type": "string",
+          "enum": [
+            "Sí",
+            "No"
+          ],
+          "title": "Corticoides"
+        },
+        "azitromicinaOral": {
+          "type": "string",
+          "enum": [
+            "Sí",
+            "No"
+          ],
+          "title": "Azitromicina oral"
+        },
+        "terapiaRespiratoria": {
+          "type": "string",
+          "enum": [
+            "Sí",
+            "No"
+          ],
+          "title": "Terapia respiratoria"
+        },
+        "actividadDeportiva": {
+          "type": "string",
+          "enum": [
+            "Sí",
+            "No"
+          ],
+          "title": "Actividad deportiva"
+        },
+        "oxigenoterapiaDomiciliaria": {
+          "type": "string",
+          "enum": [
+            "Sí",
+            "No"
+          ],
+          "title": "Oxigenoterapia domiciliaria"
+        },
+        "asistenciaRespiratoria": {
+          "type": "string",
+          "enum": [
+            "Sí",
+            "No"
+          ],
+          "title": "Asistencia respiratoria"
+        },
+        "moduladores": {
+          "type": "string",
+          "enum": [
+            "Sí",
+            "No"
+          ],
+          "title": "Moduladores"
+        },
+        "trasplante": {
+          "type": "string",
+          "title": "Trasplante",
+          "enum": [
+            "No",
+            "Lista de espera",
+            "Sí"
+          ]
+        }
+      },
+      "required": [
+        "enzimasPancreaticas",
+        "vitaminas",
+        "suplementacionVitaminaD",
+        "suplementoNutricional",
+        "acidoUrsodesoxicolico",
+        "antiacidos",
+        "insulina",
+        "broncodilatadores",
+        "dnasa",
+        "solucionSalinaHipertonica",
+        "antibioticosInhalados",
+        "corticoides",
+        "azitromicinaOral",
+        "terapiaRespiratoria",
+        "actividadDeportiva",
+        "oxigenoterapiaDomiciliaria",
+        "asistenciaRespiratoria",
+        "moduladores",
+        "trasplante"
+      ],
+      "dependencies": {
+        "antibioticosInhalados": {
+          "oneOf": [
+            {
+              "properties": {
+                "antibioticosInhalados": {
+                  "enum": [
+                    "No"
+                  ]
+                }
+              }
+            },
+            {
+              "properties": {
+                "antibioticosInhalados": {
+                  "enum": [
+                    "Sí"
+                  ]
+                },
+                "antibioticosInhaladosRealizada": {
+                  "type": "array",
+                  "title": "Antibióticos inhalados realizada",
+                  "minItems": 1,
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "Colistina",
+                      "Tobramicina",
+                      "Aztreonan",
+                      "Vancomicina",
+                      "Otros"
+                    ]
+                  },
+                  "uniqueItems": true
+                }
+              }
+            }
+          ]
+        },
+        "corticoides": {
+          "oneOf": [
+            {
+              "properties": {
+                "corticoides": {
+                  "enum": [
+                    "No"
+                  ]
+                }
+              }
+            },
+            {
+              "properties": {
+                "corticoides": {
+                  "enum": [
+                    "Sí"
+                  ]
+                },
+                "corticoidesRealizada": {
+                  "type": "array",
+                  "title": "Corticoides realizada",
+                  "minItems": 1,
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "Orales",
+                      "Inhalados"
+                    ]
+                  },
+                  "uniqueItems": true
+                }
+              }
+            }
+          ]
+        },
+        "terapiaRespiratoria": {
+          "oneOf": [
+            {
+              "properties": {
+                "terapiaRespiratoria": {
+                  "enum": [
+                    "No"
+                  ]
+                }
+              }
+            },
+            {
+              "properties": {
+                "terapiaRespiratoria": {
+                  "enum": [
+                    "Sí"
+                  ]
+                },
+                "terapiaRespiratoriaRealizada": {
+                  "type": "array",
+                  "title": "Terapia respiratoria realizada",
+                  "minItems": 1,
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "Convencional",
+                      "Ciclo activo",
+                      "Drenaje autogénico",
+                      "Dispositivo mecánicos",
+                      "Chaleco",
+                      "VNI"
+                    ]
+                  },
+                  "uniqueItems": true
+                }
+              }
+            }
+          ]
+        },
+        "asistenciaRespiratoria": {
+          "oneOf": [
+            {
+              "properties": {
+                "asistenciaRespiratoria": {
+                  "enum": [
+                    "No"
+                  ]
+                }
+              }
+            },
+            {
+              "properties": {
+                "asistenciaRespiratoria": {
+                  "enum": [
+                    "Sí"
+                  ]
+                },
+                "asistenciaRespiratoriaRealizada": {
+                  "type": "string",
+                  "title": "Asistencia respiratoria realizada",
+                  "enum": [
+                    "VMI",
+                    "VNI"
+                  ]
+                }
+              },
+              "required": [
+                "asistenciaRespiratoriaRealizada"
+              ]
+            }
+          ]
+        },
+        "moduladores": {
+          "oneOf": [
+            {
+              "properties": {
+                "moduladores": {
+                  "enum": [
+                    "No"
+                  ]
+                }
+              }
+            },
+            {
+              "properties": {
+                "moduladores": {
+                  "enum": [
+                    "Sí"
+                  ]
+                },
+                "moduladoresRealizada": {
+                  "type": "string",
+                  "title": "Moduladores realizada",
+                  "enum": [
+                    "Tezacafator - Ivacaftor + Ivacaftor (100 - 150 + 150 mg)",
+                    "Ivacaftor 150 Mg Comprimidos",
+                    "Ivacaftor 125 Mg + Lumacaftor 100 Mg",
+                    "Ivacaftor 125 Mg + Lumacaftor 200 Mg"
+                  ]
+                },
+
+                "seccion7":{
+                  "type": "object",
+                  "title": "Prescripción",
+                  "properties": {
+                    "establecimiento": {
+                      "type": "string",
+                      "title": "Establecimiento de salud de atención",
+                      "enum": [
+                        "Cedma",
+                        "Cemic",
+                        "Centro De Especialidades Pediátricas Estación Infancia",
+                        "Centro Médico Del Sur",
+                        "Centro Respiratorio Infantil",
+                        "Clinica Del Sud",
+                        "Clinica San Lucas",
+                        "Clínica Y Maternidad Del Sol",
+                        "Consultorio De Especialidades Medicas",
+                        "Consultorio Fq - Dra. Alais",
+                        "Consultorio Fq-  Dra. Bertelegni",
+                        "Consultorio Fq- Dr. Lotero",
+                        "Consultorio Fq - Dr. Macri",
+                        "Consultorio Fq - Dr. Meneguetti",
+                        "Hospital Alemán",
+                        "Hospital Dalmacio Vélez Sarsfield",
+                        "Hospital De Alta Complejidad",
+                        "Hospital De Cipolletti",
+                        "Hospital De Ninos De La Sma.Trinidad",
+                        "Hospital De Niños De San Justo",
+                        "Hospital De Niños Dr Orlando Alassia",
+                        "Hospital De Niños Héctor Quintana",
+                        "Hospital De Niños Pedro De Elizalde",
+                        "Hospital De Niños Ricardo Gutiérrez",
+                        "Hospital De Niños Sor Maria Ludovica",
+                        "Hospital De Pediatría Juan P. Garrahan",
+                        "Hospital Del Niño Jesús",
+                        "Hospital Dr Alejandro Posadas",
+                        "Hospital Dr. Antonio A. Cetrángolo",
+                        "Hospital Eva Perón",
+                        "Hospital Humaberto Notti",
+                        "Hospital Infantil Municipal",
+                        "Hospital Italiano",
+                        "Hospital Iturraspe",
+                        "Hospital Lucio Molas",
+                        "Hospital Pediátrico Dr. Avelino Castelan",
+                        "Hospital Pediátrico Juan Pablo Ii",
+                        "Hospital Prof.Dr Rodolfo Rossi",
+                        "Hospital Provincial De Pediatría“Dr. Barreyro”",
+                        "Hospital Provincial De Rosario",
+                        "Hospital Público Materno Infantil De Salta",
+                        "Hospital Ramón Carrillo",
+                        "Hospital Regional",
+                        "Hospital Samic El Dorado",
+                        "Hospital San Roque",
+                        "Hospital Penna",
+                        "Hospital San Luis",
+                        "Hospital Victor J Vilela",
+                        "Instituto Especialidades Pediátricas",
+                        "Instituto Modelo De Cardiología",
+                        "Maf",
+                        "Pediatrica San Luis",
+                        "Policlínico Neuquén",
+                        "Otro"
+                      ]
+                    },
+                    "provinciaEstablecimiento": {
+                      "type": "string",
+                      "title": "Provincia del establecimiento",
+                      "enum": [
+                        "CABA",
+                        "Buenos Aires",
+                        "Catamarca",
+                        "Chaco",
+                        "Chubut",
+                        "Córdoba",
+                        "Corrientes",
+                        "Entre Ríos",
+                        "Formosa",
+                        "Jujuy",
+                        "La Pampa",
+                        "La Rioja",
+                        "Mendoza",
+                        "Misiones",
+                        "Neuquén",
+                        "Río Negro",
+                        "Salta",
+                        "San Juan",
+                        "San Luis",
+                        "Santa Cruz",
+                        "Santa Fe",
+                        "Santiago del Estero",
+                        "Tierra del Fuego",
+                        "Tucumán"
+                      ]
+                    },
+                    "municipioEstablecimiento": {
+                      "type": "string",
+                      "title": "Localidad"
+                    },
+                    
+                    "medicoResponsable": {
+                      "type": "string",
+                      "title": "Médico responsable"
+                    },
+                    "nombreMedicoResponsable": {
+                      "type": "string",
+                      "title": "Nombre"
+                    },
+                    "apellidoMedicoResponsable": {
+                      "type": "string",
+                      "title": "Apellido"
+                    },
+                    "matriculaMedicoResponsable": {
+                      "type": "string",
+                      "title": "Matrícula"
+                    },
+                    
+                    "responsablesRecepcion": {
+                      "type": "string",
+                      "title": "Responsables de la recepción del medicamento"
+                    },
+                    
+                    "responsable1": {
+                      "type": "string",
+                      "title": "Responsable 1"
+                    },
+                    "nombreResponsable1": {
+                      "type": "string",
+                      "title": "Nombre"
+                    },
+                    "apellidoResponsable1": {
+                      "type": "string",
+                      "title": "Apellido"
+                    },
+                    "dniResponsable1": {
+                      "type": "number",
+                      "title": "D.N.I.",
+                      "minLength": 8
+                    },
+                    "telefonoResponsable1": {
+                      "type": "number",
+                      "title": "Teléfono"
+                    },
+                    "emailResponsable1": {
+                      "type": "string",
+                      "title": "Email"
+                    },
+            
+                    "responsable2": {
+                      "type": "string",
+                      "title": "Responsable 2"
+                    },
+                    "nombreResponsable2": {
+                      "type": "string",
+                      "title": "Nombre"
+                    },
+                    "apellidoResponsable2": {
+                      "type": "string",
+                      "title": "Apellido"
+                    },
+                    "dniResponsable2": {
+                      "type": "number",
+                      "title": "D.N.I.",
+                      "minLength": 8
+                    },
+                    "telefonoResponsable2": {
+                      "type": "number",
+                      "title": "Teléfono"
+                    },
+                    "emailResponsable2": {
+                      "type": "string",
+                      "title": "Email"
+                    },
+
+                    "receta": {
+                      "type": "string",
+                      "title": "Receta"
+                    },
+                    "infoReceta": {
+                      "type": "string",
+                      "title": "Envíe una imagen de la receta del medicamento con su firma y sello al mail prog.de.salud@gmail.com, detallando en el asunto el DNI del paciente y la fecha (ejemplo: 31456789 06/04/2022)"
+                    }
+                  },
+                  "required": [
+                    "establecimiento",
+                    "provinciaEstablecimiento",
+                    "municipioEstablecimiento",
+                    "nombreResponsable1",
+                    "apellidoResponsable1",
+                    "dniResponsable1",
+                    "telefonoResponsable1",
+                    "emailResponsable1",
+                    "nombreResponsable2",
+                    "apellidoResponsable2",
+                    "dniResponsable2",
+                    "telefonoResponsable2",
+                    "emailResponsable2"
+                  ],
+                  "dependencies": {
+                    "establecimiento": {
+                      "oneOf": [
+                        {
+                          "properties": {
+                            "establecimiento": {
+                              "enum": [
+                                "Cedma",
+                                "Cemic",
+                                "Centro De Especialidades Pediátricas Estación Infancia",
+                                "Centro Médico Del Sur",
+                                "Centro Respiratorio Infantil",
+                                "Clinica Del Sud",
+                                "Clinica San Lucas",
+                                "Clínica Y Maternidad Del Sol",
+                                "Consultorio De Especialidades Medicas",
+                                "Consultorio Fq - Dra. Alais",
+                                "Consultorio Fq-  Dra. Bertelegni",
+                                "Consultorio Fq- Dr. Lotero",
+                                "Consultorio Fq - Dr. Macri",
+                                "Consultorio Fq - Dr. Meneguetti",
+                                "Hospital Alemán",
+                                "Hospital Dalmacio Vélez Sarsfield",
+                                "Hospital De Alta Complejidad",
+                                "Hospital De Cipolletti",
+                                "Hospital De Ninos De La Sma.Trinidad",
+                                "Hospital De Niños De San Justo",
+                                "Hospital De Niños Dr Orlando Alassia",
+                                "Hospital De Niños Héctor Quintana",
+                                "Hospital De Niños Pedro De Elizalde",
+                                "Hospital De Niños Ricardo Gutiérrez",
+                                "Hospital De Niños Sor Maria Ludovica",
+                                "Hospital De Pediatría Juan P. Garrahan",
+                                "Hospital Del Niño Jesús",
+                                "Hospital Dr Alejandro Posadas",
+                                "Hospital Dr. Antonio A. Cetrángolo",
+                                "Hospital Eva Perón",
+                                "Hospital Humaberto Notti",
+                                "Hospital Infantil Municipal",
+                                "Hospital Italiano",
+                                "Hospital Iturraspe",
+                                "Hospital Lucio Molas",
+                                "Hospital Pediátrico Dr. Avelino Castelan",
+                                "Hospital Pediátrico Juan Pablo Ii",
+                                "Hospital Prof.Dr Rodolfo Rossi",
+                                "Hospital Provincial De Pediatría“Dr. Barreyro”",
+                                "Hospital Provincial De Rosario",
+                                "Hospital Público Materno Infantil De Salta",
+                                "Hospital Ramón Carrillo",
+                                "Hospital Regional",
+                                "Hospital Samic El Dorado",
+                                "Hospital San Roque",
+                                "Hospital Penna",
+                                "Hospital San Luis",
+                                "Hospital Victor J Vilela",
+                                "Instituto Especialidades Pediátricas",
+                                "Instituto Modelo De Cardiología",
+                                "Maf",
+                                "Pediatrica San Luis",
+                                "Policlínico Neuquén"
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "properties": {
+                            "establecimiento": {
+                              "enum": [
+                                "Otro"
+                              ]
+                            },
+                            "otroEstablecimiento": {
+                              "type": "string",
+                              "title": "Otro establecimiento"
+                            }
+                          },
+                          "required": [
+                            "otroEstablecimiento"
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                }
+              },
+              "required": [
+                "moduladoresRealizada"
+              ]
+            }
+          ]
+        },
+        "trasplante": {
+          "oneOf": [
+            {
+              "properties": {
+                "trasplante": {
+                  "enum": [
+                    "No"
+                  ]
+                }
+              }
+            },
+            {
+              "properties": {
+                "trasplante": {
+                  "enum": [
+                    "Sí"
+                  ]
+                },
+                "trasplanteRealizada": {
+                  "type": "string",
+                  "title": "Trasplante realizado",
+                  "enum": [
+                    "pulmonar",
+                    "hepático",
+                    "pulmonar/hepático"
+                  ]
+                }
+              },
+              "required": [
+                "trasplanteRealizada"
+              ]
+            }
+          ]
+        }
+      }
+    }
+  }
+}

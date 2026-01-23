@@ -1,0 +1,430 @@
+{
+  "title": "Datos del paciente",
+  "description": "Formulario de alta de un nuevo paciente.",
+  "type": "object",
+  "properties": {
+    "seccion1": {
+      "title": "Datos del paciente",
+      "type": "object",
+      "properties": {
+        "nombre": {
+          "type": "string",
+          "title": "Nombre"
+        },
+        "apellido": {
+          "type": "string",
+          "title": "Apellido"
+        },
+        "dni": {
+          "type": "number",
+          "title": "D.N.I.",
+          "minLength": 8
+        },
+        "fecNac": {
+          "type": "string",
+          "format": "date",
+          "title": "Fecha de nacimiento"
+        },
+        "sexo": {
+          "type": "string",
+          "title": "Sexo",
+          "enum": [
+            "Masculino",
+            "Femenino",
+            "Otro"
+          ]
+        },
+        "nEducativo": {
+          "type": "string",
+          "title": "Nivel educativo",
+          "enum": [
+            "Primario",
+            "Secundario",
+            "Terciario",
+            "Universitario"
+          ]
+        },
+        "provincia": {
+          "type": "string",
+          "title": "Provincia",
+          "enum": [
+            "Buenos Aires",
+            "Catamarca",
+            "Chaco",
+            "Chubut",
+            "Córdoba",
+            "Corrientes",
+            "Entre Ríos",
+            "Formosa",
+            "Jujuy",
+            "La Pampa",
+            "La Rioja",
+            "Mendoza",
+            "Misiones",
+            "Neuquén",
+            "Río Negro",
+            "Salta",
+            "San Juan",
+            "San Luis",
+            "Santa Cruz",
+            "Santa Fe",
+            "Santiago del Estero",
+            "Tierra del Fuego",
+            "Tucumán"
+          ]
+        },
+        "institucion": {
+          "type": "string",
+          "title": "Institución",
+          "enum": [
+            "Cedma",
+            "Cemic",
+            "Centro De Especialidades Pediátricas Estación Infancia",
+            "Centro Médico Del Sur",
+            "Centro Respiratorio Infantil",
+            "Clinica Del Sud",
+            "Clinica San Lucas",
+            "Clínica Y Maternidad Del Sol",
+            "Consultorio De Especialidades Medicas",
+            "Consultorio Fq - Dra. Alais",
+            "Consultorio Fq-  Dra. Bertelegni",
+            "Consultorio Fq- Dr. Lotero",
+            "Consultorio Fq - Dr. Macri",
+            "Consultorio Fq - Dr. Meneguetti",
+            "Hospital Alemán",
+            "Hospital Dalmacio Vélez Sarsfield",
+            "Hospital De Alta Complejidad",
+            "Hospital De Cipolletti",
+            "Hospital De Ninos De La Sma.Trinidad",
+            "Hospital De Niños De San Justo",
+            "Hospital De Niños Dr Orlando Alassia",
+            "Hospital De Niños Héctor Quintana",
+            "Hospital De Niños Pedro De Elizalde",
+            "Hospital De Niños Ricardo Gutiérrez",
+            "Hospital De Niños Sor Maria Ludovica",
+            "Hospital De Pediatría Juan P. Garrahan",
+            "Hospital Del Niño Jesús",
+            "Hospital Dr Alejandro Posadas",
+            "Hospital Dr. Antonio A. Cetrángolo",
+            "Hospital Eva Perón",
+            "Hospital Humaberto Notti",
+            "Hospital Infantil Municipal",
+            "Hospital Italiano",
+            "Hospital Iturraspe",
+            "Hospital Lucio Molas",
+            "Hospital Pediátrico Dr. Avelino Castelan",
+            "Hospital Pediátrico Juan Pablo Ii",
+            "Hospital Prof.Dr Rodolfo Rossi",
+            "Hospital Provincial De Pediatría“Dr. Barreyro”",
+            "Hospital Provincial De Rosario",
+            "Hospital Público Materno Infantil De Salta",
+            "Hospital Ramón Carrillo",
+            "Hospital Regional",
+            "Hospital Samic El Dorado",
+            "Hospital San Roque",
+            "Hospital Penna",
+            "Hospital San Luis",
+            "Hospital Victor J Vilela",
+            "Instituto Especialidades Pediátricas",
+            "Instituto Modelo De Cardiología",
+            "Maf",
+            "Pediatrica San Luis",
+            "Policlínico Neuquén"
+          ]
+        }
+      },
+      "required": [
+        "nombre",
+        "apellido",
+        "dni",
+        "fecNac",
+        "sexo",
+        "provincia"
+      ]
+    },
+    "seccion2": {
+      "title": "Diagnóstico",
+      "type": "object",
+      "properties": {
+        "fechaDiagnostico": {
+          "type": "string",
+          "format": "date",
+          "title": "Fecha de diagnóstico"
+        },
+        "edadDiagnostico": {
+          "type": "string",
+          "title": "Edad al diagnóstico"
+        },
+        "pesquisaNeonatal": {
+          "type": "string",
+          "title": "Pesquisa Neonatal",
+          "enum": [
+            "No realizada",
+            "Realizada"
+          ]
+        },
+        "sospechaDiagnostica": {
+          "type": "array",
+          "title": "Sospecha diagnóstica",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "enum": [
+              "Pesquisa neonatal",
+              "Antecedentes familiares",
+              "Síntomas respiratorios",
+              "Malnutrición / falla de crecimiento",
+              "Diarrea crónica/malabsorción",
+              "Ileo meconial",
+              "Azoospermia",
+              "Edemas",
+              "Alcalosis metabólica/deshidratación",
+              "Anemia/Hipoalbuminemia",
+              "Hepatopatía",
+              "Sudor salado"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "seccionCloruro": {
+          "title": "Prueba del sudor",
+          "type": "object",
+          "properties": {
+            "cloruro1": {
+              "type": "number",
+              "title": "Cloruro 1",
+              "min": 0,
+              "max": 160
+            },
+            "cloruro2": {
+              "type": "number",
+              "title": "Cloruro 2",
+              "minimun": 0,
+              "maximun": 160
+            }
+          }
+        },
+        "estudioGenMol": {
+          "type": "string",
+          "title": "Estudio genético molecular",
+          "enum": [
+            "No realizado",
+            "Realizado"
+          ],
+          "default": "No realizado"
+        },
+        "potencialNasal": {
+          "type": "string",
+          "title": "Potencial nasal",
+          "enum": [
+            "No realizado",
+            "Realizado"
+          ],
+          "default": "No realizado"
+        },
+        "funcionalismoPancreatico": {
+          "type": "string",
+          "title": "Funcionalismo pancreático",
+          "enum": [
+            "Suficiente",
+            "Insuficiente"
+          ]
+        }
+      },
+      "dependencies": {
+        "pesquisaNeonatal": {
+          "oneOf": [
+            {
+              "properties": {
+                "pesquisaNeonatal": {
+                  "enum": [
+                    "No realizada"
+                  ]
+                }
+              }
+            },
+            {
+              "properties": {
+                "pesquisaNeonatal": {
+                  "enum": [
+                    "Realizada"
+                  ]
+                },
+                "estrategia": {
+                  "type": "string",
+                  "title": "Estrategia",
+                  "enum": [
+                    "TIR/TIR",
+                    "TIR/PAP"
+                  ]
+                }
+              },
+              "required": [
+                "estrategia"
+              ]
+            }
+          ]
+        },
+        "estudioGenMol": {
+          "oneOf": [
+            {
+              "properties": {
+                "estudioGenMol": {
+                  "enum": [
+                    "No realizado"
+                  ]
+                }
+              }
+            },
+            {
+              "properties": {
+                "estudioGenMol": {
+                  "enum": [
+                    "Realizado"
+                  ]
+                },
+                "alelo1": {
+                  "type": "string",
+                  "title": "Alelo 1",
+                  "enum": [
+                    "1353insT",
+                    "1460delAT",
+                    "1717-1G>A",
+                    "1782delA",
+                    "1811+1.6KbA>G",
+                    "1812-1G>A",
+                    "1898+3A>G",
+                    "2183AA>G",
+                    "2184delA",
+                    "2566insT",
+                    "2594delGT",
+                    "2686insT",
+                    "2789+2insA",
+                    "2789+5G>A",
+                    "3120+1G>A",
+                    "3659delC",
+                    "3272-26A>G",
+                    "3849+10KbC>T",
+                    "4016insT",
+                    "5T",
+                    "621+1G>T",
+                    "711+1G>T",
+                    "CFTRdele2,3",
+                    "D1152H",
+                    "D426C",
+                    "DF508",
+                    "G542X",
+                    "G551D",
+                    "G85E",
+                    "I507",
+                    "L6V",
+                    "N1303K",
+                    "Q220X",
+                    "R1066C",
+                    "R117H",
+                    "R1162X",
+                    "R334W",
+                    "R553X",
+                    "R75Q",
+                    "S549R",
+                    "W1089X",
+                    "W1282X",
+                    "W57X",
+                    "Y362X",
+                    "Otra",
+                    "No identificada"
+                  ]
+                },
+                "alelo2": {
+                  "type": "string",
+                  "title": "Alelo 2",
+                  "enum": [
+                    "1353insT",
+                    "1460delAT",
+                    "1717-1G>A",
+                    "1782delA",
+                    "1811+1.6KbA>G",
+                    "1812-1G>A",
+                    "1898+3A>G",
+                    "2183AA>G",
+                    "2184delA",
+                    "2566insT",
+                    "2594delGT",
+                    "2686insT",
+                    "2789+2insA",
+                    "2789+5G>A",
+                    "3120+1G>A",
+                    "3659delC",
+                    "3272-26A>G",
+                    "3849+10KbC>T",
+                    "4016insT",
+                    "5T",
+                    "621+1G>T",
+                    "711+1G>T",
+                    "CFTRdele2,3",
+                    "D1152H",
+                    "D426C",
+                    "DF508",
+                    "G542X",
+                    "G551D",
+                    "G85E",
+                    "I507",
+                    "L6V",
+                    "N1303K",
+                    "Q220X",
+                    "R1066C",
+                    "R117H",
+                    "R1162X",
+                    "R334W",
+                    "R553X",
+                    "R75Q",
+                    "S549R",
+                    "W1089X",
+                    "W1282X",
+                    "W57X",
+                    "Y362X",
+                    "Otra",
+                    "No identificada"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "potencialNasal": {
+          "oneOf": [
+            {
+              "properties": {
+                "potencialNasal": {
+                  "enum": [
+                    "No realizado"
+                  ]
+                }
+              }
+            },
+            {
+              "properties": {
+                "potencialNasal": {
+                  "enum": [
+                    "Realizado"
+                  ]
+                },
+                "potencialNasalRealizado": {
+                  "type": "string",
+                  "title": "Potencial nasal realizado",
+                  "enum": [
+                    "Normal",
+                    "Anormal"
+                  ]
+                }
+              },
+              "required": [
+                "Potencial nasal realizado"
+              ]
+            }
+          ]
+        }
+      }
+    }
+  }
+}
