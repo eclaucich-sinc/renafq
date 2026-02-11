@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import { Button, Modal, ModalBody, ModalFooter, ModalTitle, Overlay, Table, Tooltip, Image } from "react-bootstrap";
+import { Alert, Button, Modal, ModalBody, ModalFooter, ModalTitle, Overlay, Table, Tooltip, Image } from "react-bootstrap";
 import ModalHeader from "react-bootstrap/esm/ModalHeader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle, faPlus } from "@fortawesome/free-solid-svg-icons";
@@ -35,44 +35,49 @@ function NuevaReceta({recetasData, pacienteId, seguimientoId}) {
     const [imagenAgregada, setImagenAgregada] = useState(false);
     const [fileLoaded, setFileLoaded] = useState(false);
     const [tipoMedicacion, setTipoMedicacion] = useState(null);
+    const [alert, setAlert] = useState({ show: false, type: '', message: '' });
     const history = useHistory();
 
     const dispatch = useDispatch();
 
     useEffect(() => {
         if(state.receta._id && imagenAgregada && !seguimientoActualizado) {
+            console.log("Nuevo ID de receta agregada:", state.receta._id);
             setSeguimientoActualizado(true);
             let newRecetas = [...recetas, {id: state.receta._id, fechaReceta: GetTodayDate(), fechaEnvio: "", cajasEnviadas: ""}]
+            console.log("Nueva lista de recetas:", newRecetas);
             setRecetas(newRecetas)
             dispatch(actualizarRecetasSeguimiento(pacienteId, seguimientoId, newRecetas))
+            setAlert({ show: true, type: 'success', message: 'Receta guardada exitosamente...' });
             setTimeout(() => {
                 history.go(0);
-            }, 300);
+            }, 1500);
         }
     }, [state.receta._id, imagenAgregada, seguimientoActualizado])
 
     const convertImage = async (fechaSeguimiento) => {
-        handleCloseModal()
         let archivo = document.getElementById('inputFile').files[0];
         setSeguimientoActualizado(false);
         setImagenAgregada(false);
+        setAlert({ show: false, type: '', message: '' });
 
         try {
             if(archivo && !imagenAgregada)
             {
                 console.log("RECETA OK");
-                dispatch(agregarReceta(archivo, state.paciente.seccion1.dni, fechaSeguimiento, tipoMedicacion));
+                setAlert({ show: true, type: 'info', message: 'Subiendo receta, por favor espere...' });
+                dispatch(agregarReceta(archivo, pacienteId, fechaSeguimiento, tipoMedicacion));
                 setImagenAgregada(true);
             }
             else
             {
-                window.alert("ERROR con el formato de la receta. Por favor, utilice archivos de extensión .pdf, .jpg o .jpeg y vuelva a intentar")
+                setAlert({ show: true, type: 'danger', message: 'ERROR: No se ha seleccionado un archivo o el formato no es válido. Por favor, utilice archivos de extensión .pdf, .jpg o .jpeg' });
                 console.log("ERROR FORMATO FACTURA");
             }
         }
         catch (error)
         {
-            window.alert("ERROR al subir la receta. Por favor, vuelva a intentar. \n Si persiste el problema, contactase con soporte para que podamos ayudarle.")
+            setAlert({ show: true, type: 'danger', message: 'ERROR al subir la receta. Por favor, vuelva a intentar. Si persiste el problema, contacte con soporte para que podamos ayudarle.' });
             console.log("ERROR FACTURA");
         }
     }
@@ -81,6 +86,8 @@ function NuevaReceta({recetasData, pacienteId, seguimientoId}) {
         setShowModal(false);
         setFileLoaded(false);
         setImagenAgregada(false);
+        setAlert({ show: false, type: '', message: '' });
+        setTipoMedicacion(null);
     }
 
     function handleGuardar() {
@@ -107,6 +114,11 @@ function NuevaReceta({recetasData, pacienteId, seguimientoId}) {
                 </Overlay>
             </ModalHeader>
             <ModalBody>
+                {alert.show && (
+                    <Alert variant={alert.type} onClose={() => setAlert({ show: false, type: '', message: '' })} dismissible>
+                        {alert.message}
+                    </Alert>
+                )}
                 <div>
                     <p>La dispensa de la medicación será cada 3 meses, está sujeta a que las variantes sean respondedoras a la triple terapia según las indicadas en la evaluación de <a href="https://www.argentina.gob.ar/sites/default/files/informe-18-moduladores-en-fq.pdf" target="_blank">Tecnología sanitaria</a>, y que los aspectos clínicos del paciente estén actualizados.</p>
                     <p>Cargue la receta digital en formato PDF</p>
@@ -139,7 +151,7 @@ function NuevaReceta({recetasData, pacienteId, seguimientoId}) {
                 </div>
             </ModalBody>
             <ModalFooter>
-                <Button variant="danger" onClick={handleCloseModal}>Cerrar</Button>
+                <Button variant="danger" onClick={handleCloseModal} disabled={imagenAgregada && !seguimientoActualizado}>Cerrar</Button>
                 <Button variant="success" onClick={handleGuardar} disabled={!fileLoaded||imagenAgregada||tipoMedicacion==null}>Guardar</Button>
             </ModalFooter>
         </Modal>

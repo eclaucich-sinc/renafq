@@ -17,8 +17,9 @@ const storage = multer.diskStorage({
     cb(null, 'uploads/recetas/');
   },
   filename: function (req, file, cb) {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-    cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname));
+    // Nombre temporal, se renombrará después con el ID del documento
+    const tempName = 'temp-' + Date.now() + path.extname(file.originalname);
+    cb(null, tempName);
   }
 });
 

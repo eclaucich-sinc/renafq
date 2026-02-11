@@ -8,11 +8,25 @@ import { useDispatch, useSelector } from "react-redux";
 function ImagenReceta({recetaid}) {
 
     const [showModal, setShowModal] = useState(false);
-    const handleShowModal = () => setShowModal(true);
-    const handleCloseModal = () => setShowModal(false);
+    const [error, setError] = useState(null);
+    const handleShowModal = () => {
+        console.log("Abriendo modal para receta ID:", recetaid);
+        setShowModal(true);
+    }
+    const handleCloseModal = () => {
+        setShowModal(false);
+        setError(null);
+    }
     
     // URL del archivo en el servidor
-    const fileUrl = `/api/recetas/${recetaid}`;
+    const fileUrl = `./uploads/recetas/${recetaid}.pdf`;
+    // log the fileUrl
+    console.log("fileUrl:", fileUrl);
+
+    const handleIframeError = () => {
+        console.error("Error al cargar el iframe para:", fileUrl);
+        setError("No se pudo cargar la receta. Verifique que el archivo existe.");
+    };
 
     return (
         <>
@@ -20,12 +34,14 @@ function ImagenReceta({recetaid}) {
             <Modal show={showModal} onHide={handleCloseModal} size="lg">
                 <ModalHeader closeButton></ModalHeader>
                 <ModalBody>
+                    {error && <div className="alert alert-danger">{error}</div>}
                     <iframe
                         src={fileUrl}
                         title="Receta Preview"
                         width="100%"
                         height="500px"
                         style={{ border: 'none' }}
+                        onError={handleIframeError}
                     />
                 </ModalBody>
                 <ModalFooter>

@@ -51,7 +51,7 @@ app.use(express.urlencoded({extended: false}));
 app.use(cors());
 
 //Folder for uploading files or images from the client
-app.use('/uploads', express.static('uploads'));
+app.use('./uploads', express.static(path.join(__dirname, 'uploads')));
 
 //Serving assets
 app.use(express.static(path.join(__dirname, "../react-ui/build")));

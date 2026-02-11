@@ -16,7 +16,15 @@ function InfoRecetas({recetasData, pacienteId, seguimientoId}) {
     const state = useSelector((state) => state.paciente);
     const stateAuth = useSelector(state => state.auth);
     const [showModal, setShowModal] = useState(false);
-    const handleShowModal = () => setShowModal(true);
+    const handleShowModal = () => {
+        console.log("=== DATOS DE RECETAS ===");
+        console.log("recetasData recibido:", recetasData);
+        console.log("recetas (estado local):", recetas);
+        recetas.forEach((rec, idx) => {
+            console.log(`Receta ${idx}:`, rec);
+        });
+        setShowModal(true);
+    }
     const handleCloseModal = () => setShowModal(false);
     const [showImage, setShowImage] = useState(false);
     const [tooltipModal, setTooltipModal] = useState(false);
