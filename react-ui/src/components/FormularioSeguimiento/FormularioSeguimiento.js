@@ -2627,19 +2627,20 @@ const FormularioSeguimiento = (props) => {
           edadSeguimientoMeses > 24 &&
           edadSeguimientoMeses <= 240
         ) {
+          let sexo = state.paciente.seccion1.sexo === "Masculino" ? 1 : 2;
           imc = getIMC(formData.seccion2.peso, formData.seccion2.talla);
-          zPeso = getZPeso(formData.seccion2.peso, formData.seccion2.talla);
-          zTalla = getZTalla(edadSeguimientoMeses, formData.seccion2.talla);
-          zImc = getIMC(zPeso, zTalla);
+          zPeso = getZPeso(formData.seccion2.peso, formData.seccion2.talla, sexo);
+          zTalla = getZTalla(formData.seccion2.talla, edadSeguimientoMeses);
+          // zImc cannot be calculated from Z-Peso and Z-Talla using the standard IMC formula
           percentiloPeso = getZPercentilo(zPeso);
           percentiloTalla = getZPercentilo(zTalla);
-          percentiloImc = getZPercentilo(zImc);
+          
           newFormData.seccion2.zPeso = String(zPeso.toFixed(2));
           newFormData.seccion2.zTalla = String(zTalla.toFixed(2));
-          newFormData.seccion2.zImc = String(zImc.toFixed(2));
+          newFormData.seccion2.zImc = "";
           newFormData.seccion2.percentiloPeso = String(percentiloPeso);
           newFormData.seccion2.percentiloTalla = String(percentiloTalla);
-          newFormData.seccion2.percentiloImc = String(percentiloImc);
+          newFormData.seccion2.percentiloImc = "";
           newFormData.seccion2.imc = String(imc.toFixed(2));
         } else {
           if (
@@ -2647,12 +2648,17 @@ const FormularioSeguimiento = (props) => {
             formData.seccion2.talla !== undefined &&
             edadSeguimientoMeses >= 12
           ) {
+            let sexo = state.paciente.seccion1.sexo === "Masculino" ? 1 : 2;
             imc = getIMC(formData.seccion2.peso, formData.seccion2.talla);
-            zPeso = getZPeso(formData.seccion2.peso, formData.seccion2.talla);
-            zTalla = getZTalla(edadSeguimientoMeses, formData.seccion2.talla);
-            zImc = getIMC(zPeso, zTalla);
-            percentiloImc = getZPercentilo(zImc);
-            newFormData.seccion2.percentiloImc = String(percentiloImc);
+            zPeso = getZPeso(formData.seccion2.peso, formData.seccion2.talla, sexo);
+            zTalla = getZTalla(formData.seccion2.talla, edadSeguimientoMeses);
+            
+            newFormData.seccion2.zPeso = String(zPeso.toFixed(2));
+            newFormData.seccion2.zTalla = String(zTalla.toFixed(2));
+            newFormData.seccion2.zImc = "";
+            newFormData.seccion2.percentiloPeso = String(getZPercentilo(zPeso));
+            newFormData.seccion2.percentiloTalla = String(getZPercentilo(zTalla));
+            newFormData.seccion2.percentiloImc = "";
             newFormData.seccion2.imc = imc.toFixed(2);
           }
         }
