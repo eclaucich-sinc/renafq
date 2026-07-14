@@ -123,16 +123,13 @@ exports.agregarReceta = asyncHandlers(async (req, res, next) => {
 
     const receta = await Receta.create(recetaData);
     
-    // Renombrar el archivo con el formato DNI_ID
-    const todayDate = new Date().toISOString().split('T')[0]; // Obtener la fecha actual en formato YYYY-MM-DD
-    //crear el dir si no existe
-    const dir = path.join(__dirname, '..', 'uploads', 'recetas', todayDate);
-    if (!fs.existsSync(dir)) {
-      fs.mkdirSync(dir, { recursive: true });
-    }
+    // Renombrar el archivo con el formato DNI_ID o solo ID
     const fileExtension = path.extname(req.file.originalname);
-    const newFileName = `${receta._id}${fileExtension}` //`${dni}_${receta._id}${fileExtension}`;
-    const newFilePath = path.join(dir, newFileName);
+    const newFileName = `${receta._id}${fileExtension}`;
+    
+    // Obtener el directorio donde ya está el archivo temporal
+    const fileDir = path.dirname(req.file.path);
+    const newFilePath = path.join(fileDir, newFileName);
     
     // Renombrar el archivo físico
     fs.renameSync(req.file.path, newFilePath);

@@ -1,5 +1,8 @@
 import React from 'react';
-import { ReactComponent as FolderSvg } from '../../assets/folder-shared.svg';
+import { ReactComponent as FolderSvg } from '../../assets/Icons8_flat_folder.svg';
+import { ReactComponent as FolderSharedSvg } from '../../assets/folder-shared.svg';
+import { ReactComponent as FolderDeceasedSvg } from '../../assets/folder-deceased.svg';
+import { ReactComponent as FolderSharedByMeSvg } from '../../assets/folder-shared-by-me.svg';
 import { Link } from 'react-router-dom';
 import Loader from 'react-loader-spinner';
 
@@ -25,7 +28,11 @@ const ItemListaPacientesCompartidos = (props) => {
                 <Link to={`/paciente/${paciente._id}`}>
                     <div className="folder-container">
                         <div className="folder-image">
-                            <FolderSvg className="svg-icon" />
+                            { paciente.seccion1.fallecimiento === 'Sí' ? <FolderDeceasedSvg className="svg-icon" /> :
+                              paciente.compartido ? <FolderSharedSvg className="svg-icon" /> :
+                              paciente.compartidoPorMi ? <FolderSharedByMeSvg className="svg-icon" /> :
+                              <FolderSvg className="svg-icon" />
+                            }
                             <div className="name-image">
                                 <span className="logo">{iniciales()}</span>
                             </div>

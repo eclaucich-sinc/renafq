@@ -1,5 +1,8 @@
 import React from 'react';
 import { ReactComponent as FolderSvg } from '../../assets/Icons8_flat_folder.svg';
+import { ReactComponent as FolderSharedSvg } from '../../assets/folder-shared.svg';
+import { ReactComponent as FolderDeceasedSvg } from '../../assets/folder-deceased.svg';
+import { ReactComponent as FolderSharedByMeSvg } from '../../assets/folder-shared-by-me.svg';
 import { ReactComponent as RemoveSvg } from '../../assets/close-svgrepo-com.svg';
 import { ReactComponent as EditSvg } from '../../assets/edit-svgrepo-com.svg';
 import { useSelector, useDispatch } from 'react-redux'
@@ -43,7 +46,11 @@ const ItemListaPacientes = (props) => {
                 <Link to={`/paciente/${paciente._id}`}>
                     <div className="folder-container">
                         <div className="folder-image">
-                            <FolderSvg className="svg-icon" />
+                            { paciente.seccion1.fallecimiento === 'Sí' ? <FolderDeceasedSvg className="svg-icon" /> :
+                              paciente.compartido ? <FolderSharedSvg className="svg-icon" /> :
+                              paciente.compartidoPorMi ? <FolderSharedByMeSvg className="svg-icon" /> :
+                              <FolderSvg className="svg-icon" />
+                            }
                             <div className="name-image">
                                 <span className="logo">{iniciales()}</span>
                             </div>

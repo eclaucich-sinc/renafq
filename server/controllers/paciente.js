@@ -33,11 +33,11 @@ exports.obtenerPacientes = asyncHandlers(async (req, res, next) => {
   let compartidos;
 
   if (user.rol === 'admin' || user.rol === 'EPF') {
-    pacientes = await Paciente.find({}, { 'seccion1.nombre': 1, 'seccion1.apellido': 1, 'seccion1.dni': 1, 'seccion1.fallecimiento': 1}).lean();
-    compartidos = await Paciente.find({compartido_con: {"$exists": true}, compartido_con: String(user._id)}, { 'seccion1.nombre': 1, 'seccion1.apellido': 1, 'seccion1.dni': 1 }).lean();
+    pacientes = await Paciente.find({}, { 'seccion1.nombre': 1, 'seccion1.apellido': 1, 'seccion1.dni': 1, 'seccion1.fallecimiento': 1, 'compartido_con': 1, 'creadoPor': 1 }).lean();
+    compartidos = await Paciente.find({compartido_con: {"$exists": true}, compartido_con: String(user._id)}, { 'seccion1.nombre': 1, 'seccion1.apellido': 1, 'seccion1.dni': 1, 'seccion1.fallecimiento': 1, 'compartido_con': 1, 'creadoPor': 1 }).lean();
   } else {
-    pacientes = await Paciente.find({ creadoPor: String(user._id) }, { 'seccion1.nombre': 1, 'seccion1.apellido': 1, 'seccion1.dni': 1 }).lean();
-    compartidos = await Paciente.find({compartido_con: {"$exists": true}, compartido_con: String(user._id)}, { 'seccion1.nombre': 1, 'seccion1.apellido': 1, 'seccion1.dni': 1 }).lean();
+    pacientes = await Paciente.find({ creadoPor: String(user._id) }, { 'seccion1.nombre': 1, 'seccion1.apellido': 1, 'seccion1.dni': 1, 'seccion1.fallecimiento': 1, 'compartido_con': 1, 'creadoPor': 1 }).lean();
+    compartidos = await Paciente.find({compartido_con: {"$exists": true}, compartido_con: String(user._id)}, { 'seccion1.nombre': 1, 'seccion1.apellido': 1, 'seccion1.dni': 1, 'seccion1.fallecimiento': 1, 'compartido_con': 1, 'creadoPor': 1 }).lean();
     // pacientes = await Paciente.find({}, { 'seccion1.nombre': 1, 'seccion1.apellido': 1, 'seccion1.dni': 1, 'creadoPor': user._id }).lean();
   }
   
@@ -66,6 +66,7 @@ exports.obtenerPacientes = asyncHandlers(async (req, res, next) => {
 
   pacientes.forEach((p => {
     p.compartido = false;
+    p.compartidoPorMi = (String(p.creadoPor) === String(user._id) && p.compartido_con && p.compartido_con.length > 0) ? true : false;
     todos_pacientes.push(p);
   }));
 
@@ -73,6 +74,7 @@ exports.obtenerPacientes = asyncHandlers(async (req, res, next) => {
   {
     compartidos.forEach((p => {
       p.compartido = true;
+      p.compartidoPorMi = false;
       todos_pacientes.push(p);
     }));
   }

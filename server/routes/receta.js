@@ -1,6 +1,7 @@
 const express = require('express');
 const multer = require('multer');
 const path = require('path');
+const fs = require('fs');
 const { 
     agregarReceta,
     obtenerRecetas,
@@ -14,7 +15,16 @@ const router = express.Router();
 // Configuración de multer para guardar archivos
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'uploads/recetas/');
+    // Crear directorio con la fecha de hoy
+    const todayDate = new Date().toISOString().split('T')[0]; // Formato YYYY-MM-DD
+    const dir = path.join('uploads', 'recetas', todayDate);
+    
+    // Crear el directorio si no existe
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir, { recursive: true });
+    }
+    
+    cb(null, dir);
   },
   filename: function (req, file, cb) {
     // Nombre temporal, se renombrará después con el ID del documento

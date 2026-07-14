@@ -417,7 +417,7 @@
               "Aspergillus fumigatus",
               "Aspergillus terreus",
               "Scedosporium",
-              "Flora habitual"
+              "Microbiota habitual"
             ]
           },
           "uniqueItems": true
@@ -1044,8 +1044,7 @@
                     "Ivacaftor 125 Mg + Lumacaftor 200 Mg"
                   ]
                 },
-
-                "seccion7":{
+                "seccion7": {
                   "type": "object",
                   "title": "Prescripción",
                   "properties": {
@@ -1143,7 +1142,6 @@
                       "type": "string",
                       "title": "Localidad"
                     },
-                    
                     "medicoResponsable": {
                       "type": "string",
                       "title": "Médico responsable"
@@ -1160,12 +1158,10 @@
                       "type": "string",
                       "title": "Matrícula"
                     },
-                    
                     "responsablesRecepcion": {
                       "type": "string",
                       "title": "Responsables de la recepción del medicamento"
                     },
-                    
                     "responsable1": {
                       "type": "string",
                       "title": "Responsable 1"
@@ -1191,7 +1187,6 @@
                       "type": "string",
                       "title": "Email"
                     },
-            
                     "responsable2": {
                       "type": "string",
                       "title": "Responsable 2"

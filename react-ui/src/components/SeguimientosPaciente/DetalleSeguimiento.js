@@ -938,7 +938,7 @@ const DetalleSeguimiento = (props) => {
           }
           <button className="btn btn-outline-success ml-3" onClick={MakePDFWithData}>Descargar Formulario</button>
           {seguimiento.recetas!=null && seguimiento.recetas.length>0 && <InfoRecetas recetasData={seguimiento.recetas} pacienteId={state.paciente._id} seguimientoId={seguimiento.id}></InfoRecetas>}
-          {(seguimiento.creadoPor===null || userId===seguimiento.creadoPor || stateAuth.user.rol==="admin") && state.paciente.seccion1.fallecimiento!=="Sí" && seguimiento.seccion6.moduladores==="Sí" && seguimiento.seccion6.prescribirModulador==="Si" && 
+          {(seguimiento.creadoPor===null || userId===seguimiento.creadoPor || stateAuth.user.rol==="admin") && state.paciente.seccion1.fallecimiento!=="Sí" && ((seguimiento.seccion6.moduladores==="Sí" && seguimiento.seccion6.prescribirModulador==="Si") || (seguimiento.seccion6.enzimas==="Sí" && seguimiento.seccion6.prescribirEnzimas==="Si")) && 
             <NuevaReceta recetasData={seguimiento.recetas} pacienteId={state.paciente._id} seguimientoId={seguimiento.id}></NuevaReceta>
           }
         </div>

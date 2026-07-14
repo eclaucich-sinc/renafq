@@ -14,6 +14,8 @@ import ItemListaPacientesCompartidos from "../ItemListaPacientesCompartidos/Item
 import ItemListaPacientesSinEdicion from "../ItemListaPacientesSinEdicion/ItemListaPacientesSinEdicion";
 import { ReactComponent as FolderCreado } from '../../assets/Icons8_flat_folder.svg';
 import { ReactComponent as FolderCompartido } from '../../assets/folder-shared.svg';
+import { ReactComponent as FolderCompartidoPorMi } from '../../assets/folder-shared-by-me.svg';
+import { ReactComponent as FolderFallecido } from '../../assets/folder-deceased.svg';
 
 function ListaPacientes({ history }) {
   const state = useSelector((state) => state.paciente);
@@ -24,6 +26,11 @@ function ListaPacientes({ history }) {
   const [numeroPacientes, setNumeroPacientes] = useState(state.pacientes.length);
   const [pacienteAgregado, setPacienteAgregado] = useState(state.agregado);
   const [pacientesObtenidos, setPacientesObtenidos] = useState(false);
+
+  const [mostrarMios, setMostrarMios] = useState(true);
+  const [mostrarCompartidosConmigo, setMostrarCompartidosConmigo] = useState(true);
+  const [mostrarCompartidosPorMi, setMostrarCompartidosPorMi] = useState(true);
+  const [mostrarFallecidos, setMostrarFallecidos] = useState(false);
 
   useEffect(() => {
     if (localStorage.token) {
@@ -113,30 +120,88 @@ function ListaPacientes({ history }) {
   //     }
   // }
 
+  const sortedPacientes = React.useMemo(() => {
+    return [...state.pacientesFiltrados].filter(p => {
+      const isFallecido = p.seccion1 && p.seccion1.fallecimiento === 'Sí';
+      const isCompartido = p.compartido;
+      const isCompartidoPorMi = p.compartidoPorMi;
+
+      if (isFallecido) return mostrarFallecidos;
+      if (isCompartido) return mostrarCompartidosConmigo;
+      if (isCompartidoPorMi) return mostrarCompartidosPorMi;
+      return mostrarMios;
+    }).sort((a, b) => {
+      const getGroup = (p) => {
+        if (p.seccion1 && p.seccion1.fallecimiento === 'Sí') return 4;
+        if (p.compartido) return 2;
+        if (p.compartidoPorMi) return 3;
+        return 1;
+      };
+
+      const groupA = getGroup(a);
+      const groupB = getGroup(b);
+
+      if (groupA !== groupB) {
+        return groupA - groupB;
+      }
+
+      const nameA = ((a.seccion1 && a.seccion1.apellido) || '').toLowerCase() + ' ' + ((a.seccion1 && a.seccion1.nombre) || '').toLowerCase();
+      const nameB = ((b.seccion1 && b.seccion1.apellido) || '').toLowerCase() + ' ' + ((b.seccion1 && b.seccion1.nombre) || '').toLowerCase();
+
+      if (nameA < nameB) return -1;
+      if (nameA > nameB) return 1;
+      return 0;
+    });
+  }, [state.pacientesFiltrados, mostrarMios, mostrarCompartidosConmigo, mostrarCompartidosPorMi, mostrarFallecidos]);
+
   return (
     <React.Fragment>
       <Search pacientes={state.pacientesFiltrados} />
-      <div className="container">
-        <h6 className="d-inline ml-2">
+      <div className="container mt-3 mb-3">
+        <div 
+          className="d-inline-block ml-2 user-select-none" 
+          style={{ cursor: 'pointer', opacity: mostrarMios ? 1 : 0.4 }}
+          onClick={() => setMostrarMios(!mostrarMios)}
+        >
           <FolderCreado viewBox="10 10 30 30" className="svg-inline--fa mr-2 svg-icon" />
-            Mis pacientes
-        </h6>
-        <h6 className="d-inline ml-4">
+          <h6 className="d-inline">Mis pacientes</h6>
+        </div>
+        <div 
+          className="d-inline-block ml-4 user-select-none" 
+          style={{ cursor: 'pointer', opacity: mostrarCompartidosConmigo ? 1 : 0.4 }}
+          onClick={() => setMostrarCompartidosConmigo(!mostrarCompartidosConmigo)}
+        >
           <FolderCompartido viewBox="10 10 30 30" className="svg-inline--fa mr-2 svg-icon" />
-            Pacientes que me están compartiendo
-        </h6>
+          <h6 className="d-inline">Pacientes que me están compartiendo</h6>
+        </div>
+        <div 
+          className="d-inline-block ml-4 user-select-none" 
+          style={{ cursor: 'pointer', opacity: mostrarCompartidosPorMi ? 1 : 0.4 }}
+          onClick={() => setMostrarCompartidosPorMi(!mostrarCompartidosPorMi)}
+        >
+          <FolderCompartidoPorMi viewBox="10 10 30 30" className="svg-inline--fa mr-2 svg-icon" />
+          <h6 className="d-inline">Pacientes que estoy compartiendo</h6>
+        </div>
+        <div 
+          className="d-inline-block ml-4 user-select-none" 
+          style={{ cursor: 'pointer', opacity: mostrarFallecidos ? 1 : 0.4 }}
+          onClick={() => setMostrarFallecidos(!mostrarFallecidos)}
+        >
+          <FolderFallecido viewBox="10 10 30 30" className="svg-inline--fa mr-2 svg-icon" />
+          <h6 className="d-inline">Pacientes fallecidos</h6>
+        </div>
       </div>
       <div className="container pacientes-container">
         <div className="row bg-white mx-0 border border-dark py-3">
           {!state.loading ? (
-            state.pacientesFiltrados.length === 0 ? (
+            sortedPacientes.length === 0 ? (
               <div className="col">
                 <h5 className="text-center my-5">
                   No hay pacientes para mostrar
                 </h5>
               </div>
             ) : (
-              state.pacientesFiltrados.map((paciente) => {
+              sortedPacientes.map((paciente) => {
                 if(paciente.seccion1.nombre==="Prueba"){
                   console.log(paciente)
                 }

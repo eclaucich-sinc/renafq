@@ -88,7 +88,7 @@ function InfoRecetas({recetasData, pacienteId, seguimientoId}) {
                     <Overlay target={targetModal.current} show={tooltipModal} placement="right">
                         {(props) => (
                             <Tooltip id="help-tooltipModal" {...props}>
-                                En esta pantalla se listan todas las recetas del paciente asociadas al seguimiento en cuestión. Una vez caragada una nueva receta automáticamente entrará en estado pendiente y, una vez finalizado el proceso, se completarán los datos de fecha de envío y cajas enviadas según corresponda.
+                                En esta pantalla se listan todas las recetas del paciente asociadas al seguimiento en cuestión. Una vez cargada una nueva receta automáticamente entrará en estado pendiente y, una vez finalizado el proceso, se completarán los datos de fecha de envío y cajas enviadas según corresponda.
                             </Tooltip>
                         )}
                     </Overlay>
@@ -116,7 +116,7 @@ function InfoRecetas({recetasData, pacienteId, seguimientoId}) {
                                                     </td>
                                                     {(item.id!=null && item.id!=="" && 
                                                     <td>
-                                                        <ImagenReceta recetaid={item.id}></ImagenReceta>
+                                                        <ImagenReceta recetaid={item.id} fechaReceta={item.fechaReceta}></ImagenReceta>
                                                     </td>)
                                                     }
                                                     <td>{item.fechaReceta}</td>
@@ -135,7 +135,7 @@ function InfoRecetas({recetasData, pacienteId, seguimientoId}) {
                                                     <td></td>
                                                     {(item.id!=null && item.id!=="" && 
                                                     <td>
-                                                        <ImagenReceta recetaid={item.id}></ImagenReceta>
+                                                        <ImagenReceta recetaid={item.id} fechaReceta={item.fechaReceta}></ImagenReceta>
                                                     </td>)
                                                     }
                                                     <td>{item.fechaReceta}</td>
@@ -166,7 +166,7 @@ function InfoRecetas({recetasData, pacienteId, seguimientoId}) {
                                                     </td>
                                                     {(item.id!=null && item.id!=="" && 
                                                     <td>
-                                                        <ImagenReceta recetaid={item.id}></ImagenReceta>
+                                                        <ImagenReceta recetaid={item.id} fechaReceta={item.fechaReceta}></ImagenReceta>
                                                     </td>)
                                                     }
                                                     <td>{item.fechaReceta}</td>
@@ -194,7 +194,7 @@ function InfoRecetas({recetasData, pacienteId, seguimientoId}) {
                                                     </td>
                                                     {(item.id!=null && item.id!=="" && 
                                                         <td>
-                                                            <ImagenReceta recetaid={item.id}></ImagenReceta>
+                                                            <ImagenReceta recetaid={item.id} fechaReceta={item.fechaReceta}></ImagenReceta>
                                                         </td>)
                                                     }
                                                     <td>{item.fechaReceta}</td>
@@ -210,7 +210,7 @@ function InfoRecetas({recetasData, pacienteId, seguimientoId}) {
                                                         <td></td>
                                                         {(item.id!=null && item.id!=="" && 
                                                             <td>
-                                                                <ImagenReceta recetaid={item.id}></ImagenReceta>
+                                                                <ImagenReceta recetaid={item.id} fechaReceta={item.fechaReceta}></ImagenReceta>
                                                             </td>)
                                                         }
                                                         <td>{item.fechaReceta}</td>
@@ -227,7 +227,7 @@ function InfoRecetas({recetasData, pacienteId, seguimientoId}) {
                                                         </td>
                                                         {(item.id!=null && item.id!=="" && 
                                                             <td>
-                                                                <ImagenReceta recetaid={item.id}></ImagenReceta>
+                                                                <ImagenReceta recetaid={item.id} fechaReceta={item.fechaReceta}></ImagenReceta>
                                                             </td>)
                                                         }
                                                         <td>{item.fechaReceta}</td>

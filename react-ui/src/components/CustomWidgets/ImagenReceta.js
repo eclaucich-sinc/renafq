@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faImage } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
 
-function ImagenReceta({recetaid}) {
+function ImagenReceta({recetaid, fechaReceta}) {
 
     const [showModal, setShowModal] = useState(false);
     const [error, setError] = useState(null);
@@ -18,8 +18,9 @@ function ImagenReceta({recetaid}) {
         setError(null);
     }
     
-    // URL del archivo en el servidor
-    const fileUrl = `./uploads/recetas/${recetaid}.pdf`;
+    // URL del archivo usando el endpoint de la API
+    const fileUrl = `/api/recetas/${recetaid}`;
+
     // log the fileUrl
     console.log("fileUrl:", fileUrl);
 
