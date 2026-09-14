@@ -1,12 +1,15 @@
-version: '3.7'
 services:
   mongodb:
-    image: mongo:latest
+    image: mongo:6.0
+    restart: unless-stopped
     environment:
-      MONGO_ROOT_USERNAME: root
-      MONGO_ROOT_PASSWORD: password
+      # Valores reales van en un .env (no commiteado) en la raíz del proyecto — ver .env.example
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD}
     ports:
-      - 27017:27017
+      # Solo accesible desde esta misma máquina por default.
+      # En el servidor, para exponerlo a otras apps por VPN, cambiar a "<ip-vpn-servidor>:27017:27017".
+      - "127.0.0.1:27017:27017"
     volumes:
       - mongodb_data_container:/data/db
 

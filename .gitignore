@@ -19,10 +19,14 @@
 
 # misc
 .DS_Store
+.env
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
+
+# secrets / environment config (usar los .example como referencia)
+/server/config/config.env
 
 npm-debug.log*
 yarn-debug.log*
