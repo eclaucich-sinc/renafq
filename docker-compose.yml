@@ -1,6 +1,8 @@
 services:
   mongodb:
-    image: mongo:6.0
+    # MONGO_IMAGE (opcional, en .env) permite fijar otra versión si el CPU del
+    # host no soporta AVX (requisito de Mongo 5.0+) — en ese caso usar "mongo:4.4".
+    image: ${MONGO_IMAGE:-mongo:6.0}
     restart: unless-stopped
     environment:
       # Valores reales van en un .env (no commiteado) en la raíz del proyecto — ver .env.example
