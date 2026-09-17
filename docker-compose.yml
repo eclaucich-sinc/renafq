@@ -9,11 +9,12 @@ services:
       MONGO_INITDB_ROOT_USERNAME: ${MONGO_ROOT_USERNAME}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD}
     ports:
-      # Solo accesible desde esta misma máquina por default.
-      # MONGO_HOST_PORT (opcional, en .env) permite usar otro puerto si el 27017
-      # ya está ocupado en esa máquina (por ejemplo, por otro Mongo preexistente).
-      # En el servidor, para exponerlo a otras apps por VPN, cambiar a "<ip-vpn-servidor>:<puerto>:27017".
-      - "127.0.0.1:${MONGO_HOST_PORT:-27017}:27017"
+      # Bindea solo a esta IP del host — 127.0.0.1 por default (nadie afuera de la
+      # máquina puede conectarse). Para exponerlo a otras apps por VPN, poner en
+      # .env la IP de la interfaz VPN de esta máquina, ej: MONGO_BIND_IP=10.8.0.1
+      # MONGO_HOST_PORT (opcional) permite usar otro puerto si el 27017 ya está
+      # ocupado en esa máquina (por ejemplo, por otro Mongo preexistente).
+      - "${MONGO_BIND_IP:-127.0.0.1}:${MONGO_HOST_PORT:-27017}:27017"
     volumes:
       - mongodb_data_container:/data/db
 
